@@ -1,14 +1,36 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-export function EsrPromptSelect() {
+import { PromptEnum } from "./esr-methods-data"
+
+const prompts: { value: PromptEnum; label: string }[] = [
+  {
+    value: PromptEnum.Note,
+    label: "How do I write a thank you note?",
+  },
+  {
+    value: PromptEnum.Party,
+    label: "How to plan a party?",
+  },
+]
+
+interface EsrPromptSelectProps {
+  value: PromptEnum
+  onChange: (value: PromptEnum) => void
+}
+
+export function EsrPromptSelect({ value, onChange }: EsrPromptSelectProps) {
   return (
     <div className="w-full">
-      <Select>
+      <Select defaultValue={value} onValueChange={onChange}>
         <SelectTrigger className="w-full">
-          <SelectValue placeholder="How to Prompts" />
+          <SelectValue placeholder="Please select a prompt" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="culinary">How do I write a thank you note?</SelectItem>
+          {prompts.map(prompt => (
+            <SelectItem key={prompt.value} value={prompt.value}>
+              {prompt.label}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
     </div>
