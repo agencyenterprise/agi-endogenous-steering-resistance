@@ -8,7 +8,9 @@ export function EsrActivationSelect() {
           <SelectValue placeholder="Activation" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="culinary">Culinary terms with Romance language endings +0.73 boost (calibrated to 50/100 average score)</SelectItem>
+          <SelectItem value="culinary">
+            Culinary terms with Romance language endings +0.73 boost (calibrated to 50/100 average score)
+          </SelectItem>
         </SelectContent>
       </Select>
     </div>
