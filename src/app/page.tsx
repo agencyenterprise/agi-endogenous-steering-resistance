@@ -1,17 +1,17 @@
 "use client"
 
-import { useState, useCallback } from "react"
 import { ChevronDownIcon } from "lucide-react"
 import * as motion from "motion/react-client"
+import { useCallback, useState } from "react"
 
-import { BasicKatex } from "@/components/basic-katex"
 import { ActivationTokenLineChart } from "@/components/activation-token-line-chart"
+import { BasicKatex } from "@/components/basic-katex"
 import { EsrMethods } from "@/components/esr-methods"
 import { tokens } from "@/mocks/tokens"
 
 export default function Home() {
   const [highlightedWordIndex, setHighlightedWordIndex] = useState<number | null>(null)
-  
+
   const handleTokenHover = useCallback((tokenPosition: number) => {
     // Find the closest token position in our tokens array
     const closestToken = tokens.reduce((closest, token) => {
@@ -19,7 +19,7 @@ export default function Home() {
       const closestDistance = Math.abs(closest.position - tokenPosition)
       return currentDistance < closestDistance ? token : closest
     })
-    
+
     // // Find the index of this token in the array
     const wordIndex = tokens.findIndex(token => token.position === closestToken.position)
     setHighlightedWordIndex(wordIndex)
@@ -28,7 +28,7 @@ export default function Home() {
   const handleTokenLeave = useCallback(() => {
     setHighlightedWordIndex(null)
   }, [])
-  
+
   return (
     <div className="container mx-auto">
       <EsrMethods />
@@ -84,19 +84,16 @@ export default function Home() {
 
       <section id="basic-chart">
         <h2 className="text-5xl font-bold">Basic Chart</h2>
-          <ActivationTokenLineChart
-            onTokenHover={handleTokenHover}
-            onTokenLeave={handleTokenLeave}
-          />
+        <ActivationTokenLineChart onTokenHover={handleTokenHover} onTokenLeave={handleTokenLeave} />
 
         <div className="mt-4 space-x-4">
           {tokens.map((token, index) => (
-            <span 
+            <span
               key={token.position}
               className={`text-lg font-medium transition-all duration-200 ${
-                highlightedWordIndex === index 
-                  ? 'bg-blue-200 text-blue-800 px-2 py-1 rounded-md shadow-md transform scale-110' 
-                  : 'text-gray-600 hover:text-gray-800'
+                highlightedWordIndex === index
+                  ? "bg-blue-200 text-blue-800 px-2 py-1 rounded-md shadow-md transform scale-110"
+                  : "text-gray-600 hover:text-gray-800"
               }`}
             >
               {token.word}
