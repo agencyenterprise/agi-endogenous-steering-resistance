@@ -5,10 +5,13 @@ import * as motion from "motion/react-client"
 
 import { BasicChart } from "@/components/basic-chart"
 import { BasicKatex } from "@/components/basic-katex"
+import { EsrMethods } from "@/components/esr-methods"
 
 export default function Home() {
   return (
     <div className="container mx-auto">
+      <EsrMethods />
+
       <section id="lorem-ipsum">
         <h2 className="text-5xl font-bold">Lorem Ipsum</h2>
         <div>
