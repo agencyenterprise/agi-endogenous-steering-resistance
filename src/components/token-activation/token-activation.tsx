@@ -31,7 +31,7 @@ export function TokenActivation() {
       <h2 className="text-5xl font-bold">Basic Chart</h2>
       <TokenActivationLineChart onTokenHover={handleTokenHover} onTokenLeave={handleTokenLeave} />
 
-      <div className="mt-4 space-x-4">
+      <div className="flex flex-wrap gap-4 mt-4">
         {tokenActivationTokens.map((token, index) => (
           <span
             key={token.position}

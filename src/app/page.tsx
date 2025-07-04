@@ -1,6 +1,8 @@
 import * as motion from "motion/react-client"
 
 import { BasicKatex } from "@/components/basic-katex"
+import { Citation } from "@/components/citation"
+import { CodeBlock } from "@/components/code-block"
 import { EsrMethods } from "@/components/esr-methods"
 import { NextSectionArrowDown } from "@/components/next-section-arrow-down"
 import { Section } from "@/components/section"
@@ -9,6 +11,14 @@ import { TokenActivation } from "@/components/token-activation/token-activation"
 export default function Home() {
   return (
     <div className="container mx-auto flex flex-col gap-16 py-16">
+      <Section id="citation" title="Citation">
+        <Citation title="Citation" author="Author" journal="Journal" year="2025" url="https://www.google.com" />
+      </Section>
+
+      <Section id="code" title="Code Block">
+        <CodeBlock code="console.log('Hello, world!')" />
+      </Section>
+
       <Section id="lorem-ipsum" title="Lorem Ipsum">
         <div>
           <motion.p className="text-xl">
