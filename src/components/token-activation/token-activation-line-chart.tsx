@@ -4,17 +4,17 @@ import { memo } from "react"
 import { CartesianGrid, Legend, Line, LineChart, XAxis, YAxis } from "recharts"
 
 import { ChartContainer } from "@/components/ui/chart"
-import { activationTokenLineChartConfig, activationTokenLineChartData } from "@/mocks/chart-data"
+import { tokenActivationLineChartConfig, tokenActivationLineChartData } from "@/mocks/token-activation-data"
 
-interface ActivationTokenLineChartProps {
+interface TokenActivationLineChartProps {
   onTokenHover?: (tokenPosition: number) => void
   onTokenLeave?: () => void
 }
 
-export const ActivationTokenLineChart = memo(function ActivationTokenLineChart({
+export const TokenActivationLineChart = memo(function TokenActivationLineChart({
   onTokenHover,
   onTokenLeave,
-}: ActivationTokenLineChartProps) {
+}: TokenActivationLineChartProps) {
   const handleMouseMove = (event: { activeLabel?: string | number } | null) => {
     if (event && event.activeLabel && onTokenHover) {
       const tokenPosition = parseInt(String(event.activeLabel))
@@ -29,10 +29,10 @@ export const ActivationTokenLineChart = memo(function ActivationTokenLineChart({
   }
 
   return (
-    <ChartContainer config={activationTokenLineChartConfig} className="min-h-[200px] w-full">
+    <ChartContainer config={tokenActivationLineChartConfig} className="min-h-[200px] w-full">
       <LineChart
         accessibilityLayer
-        data={activationTokenLineChartData}
+        data={tokenActivationLineChartData}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >

@@ -1,40 +1,15 @@
-"use client"
-
-import { ChevronDownIcon } from "lucide-react"
 import * as motion from "motion/react-client"
-import { useCallback, useState } from "react"
 
-import { ActivationTokenLineChart } from "@/components/activation-token-line-chart"
 import { BasicKatex } from "@/components/basic-katex"
 import { EsrMethods } from "@/components/esr-methods"
-import { tokens } from "@/mocks/tokens"
+import { NextSectionArrowDown } from "@/components/next-section-arrow-down"
+import { Section } from "@/components/section"
+import { TokenActivation } from "@/components/token-activation/token-activation"
 
 export default function Home() {
-  const [highlightedWordIndex, setHighlightedWordIndex] = useState<number | null>(null)
-
-  const handleTokenHover = useCallback((tokenPosition: number) => {
-    // Find the closest token position in our tokens array
-    const closestToken = tokens.reduce((closest, token) => {
-      const currentDistance = Math.abs(token.position - tokenPosition)
-      const closestDistance = Math.abs(closest.position - tokenPosition)
-      return currentDistance < closestDistance ? token : closest
-    })
-
-    // // Find the index of this token in the array
-    const wordIndex = tokens.findIndex(token => token.position === closestToken.position)
-    setHighlightedWordIndex(wordIndex)
-  }, [])
-
-  const handleTokenLeave = useCallback(() => {
-    setHighlightedWordIndex(null)
-  }, [])
-
   return (
-    <div className="container mx-auto">
-      <EsrMethods />
-
-      <section id="lorem-ipsum">
-        <h2 className="text-5xl font-bold">Lorem Ipsum</h2>
+    <div className="container mx-auto flex flex-col gap-16 py-16">
+      <Section id="lorem-ipsum" title="Lorem Ipsum">
         <div>
           <motion.p className="text-xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel pellentesque mi. Curabitur nunc neque,
@@ -68,44 +43,21 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-8 text-center"
         >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="cursor-pointer inline-block"
-            onClick={() => {
-              const nextSection = document.getElementById("basic-chart")
-              nextSection?.scrollIntoView({ behavior: "smooth" })
-            }}
-          >
-            <ChevronDownIcon className="h-8 w-8" />
-          </motion.div>
+          <NextSectionArrowDown nextSectionId="esr-methods" />
         </motion.div>
-      </section>
+      </Section>
 
-      <section id="basic-chart">
-        <h2 className="text-5xl font-bold">Basic Chart</h2>
-        <ActivationTokenLineChart onTokenHover={handleTokenHover} onTokenLeave={handleTokenLeave} />
+      <Section id="esr-methods" title="ESR Methods">
+        <EsrMethods />
+      </Section>
 
-        <div className="mt-4 space-x-4">
-          {tokens.map((token, index) => (
-            <span
-              key={token.position}
-              className={`text-lg font-medium transition-all duration-200 ${
-                highlightedWordIndex === index
-                  ? "bg-blue-200 text-blue-800 px-2 py-1 rounded-md shadow-md transform scale-110"
-                  : "text-gray-600 hover:text-gray-800"
-              }`}
-            >
-              {token.word}
-            </span>
-          ))}
-        </div>
-      </section>
+      <Section id="basic-chart" title="Token Activation Chart">
+        <TokenActivation />
+      </Section>
 
-      <section id="basic-katex">
-        <h2 className="text-5xl font-bold">Basic Katex</h2>
+      <Section id="basic-katex" title="Basic Katex">
         <BasicKatex />
-      </section>
+      </Section>
     </div>
   )
 }
