@@ -1,50 +1,87 @@
 "use client"
 
-import { memo } from "react"
-import { CartesianGrid, Legend, Line, LineChart, XAxis, YAxis } from "recharts"
+import { memo, useCallback, useMemo } from "react"
+import { CartesianGrid, Legend, Line, LineChart, ReferenceLine, XAxis, YAxis } from "recharts"
 
 import { ChartContainer } from "@/components/ui/chart"
-import { tokenActivationLineChartConfig, tokenActivationLineChartData } from "@/mocks/token-activation-data"
+import { tokenActivationData, tokenActivationLineChartConfig } from "@/mocks/token-activation-data"
 
 interface TokenActivationLineChartProps {
-  onTokenHover?: (tokenPosition: number) => void
-  onTokenLeave?: () => void
+  highlightedPosition: number | null
+  setHighlightedPosition: (position: number | null) => void
 }
 
-export const TokenActivationLineChart = memo(function TokenActivationLineChart({
-  onTokenHover,
-  onTokenLeave,
-}: TokenActivationLineChartProps) {
-  const handleMouseMove = (event: { activeLabel?: string | number } | null) => {
-    if (event && event.activeLabel && onTokenHover) {
-      const tokenPosition = parseInt(String(event.activeLabel))
-      onTokenHover(tokenPosition)
-    }
-  }
+export const TokenActivationLineChart = memo(
+  function TokenActivationLineChart({ highlightedPosition, setHighlightedPosition }: TokenActivationLineChartProps) {
+    const handleMouseMove = useCallback(
+      (event: { activeLabel?: string | number } | null) => {
+        if (!event?.activeLabel) return
 
-  const handleMouseLeave = () => {
-    if (onTokenLeave) {
-      onTokenLeave()
-    }
-  }
+        const position = parseInt(String(event.activeLabel))
+        if (isNaN(position)) return
 
-  return (
-    <ChartContainer config={tokenActivationLineChartConfig} className="min-h-[200px] w-full">
-      <LineChart
-        accessibilityLayer
-        data={tokenActivationLineChartData}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-      >
-        <CartesianGrid vertical={false} />
-        <XAxis dataKey="tokenPosition" tickLine={false} tickMargin={10} axisLine={false} interval="preserveStartEnd" />
-        <YAxis />
-        <Legend />
-        <Line type="monotone" dataKey="latent-32734" stroke="blue" dot={false} />
-        <Line type="monotone" dataKey="latent-12017" stroke="green" dot={false} />
-        <Line type="monotone" dataKey="latent-33044" stroke="red" dot={false} />
-        <Line type="monotone" dataKey="latent-37536" stroke="lightblue" dot={false} />
-      </LineChart>
-    </ChartContainer>
-  )
-})
+        setHighlightedPosition(position)
+      },
+
+      [setHighlightedPosition]
+    )
+
+    const handleMouseLeave = useCallback(() => {
+      setHighlightedPosition(null)
+    }, [setHighlightedPosition])
+
+    const referenceLine = useMemo(() => {
+      if (highlightedPosition === null) return null
+
+      return (
+        <ReferenceLine
+          x={highlightedPosition}
+          stroke="#3b82f6"
+          strokeWidth={2}
+          strokeDasharray="5 5"
+          label={{
+            value: `Position ${highlightedPosition}`,
+            position: "top",
+            style: {
+              fill: "#3b82f6",
+              fontSize: "12px",
+              fontWeight: "500",
+              textAnchor: "middle",
+            },
+          }}
+        />
+      )
+    }, [highlightedPosition])
+
+    const lines = useMemo(() => {
+      return Object.entries(tokenActivationLineChartConfig).map(([key, config]) => (
+        <Line key={key} type="monotone" dataKey={key} stroke={config.color} dot={false} strokeWidth={2} />
+      ))
+    }, [])
+
+    return (
+      <ChartContainer config={tokenActivationLineChartConfig} className="min-h-[200px] w-full">
+        <LineChart
+          accessibilityLayer
+          data={tokenActivationData}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
+          <CartesianGrid vertical={false} />
+          <XAxis dataKey="position" tickLine={false} tickMargin={10} axisLine={false} interval="preserveStartEnd" />
+          <YAxis />
+
+          <Legend />
+
+          {referenceLine}
+
+          {lines}
+        </LineChart>
+      </ChartContainer>
+    )
+  },
+  (prevProps, nextProps) => {
+    // Custom comparison function to prevent unnecessary re-renders
+    return prevProps.highlightedPosition === nextProps.highlightedPosition
+  }
+)

@@ -19,83 +19,28 @@ export const tokenActivationLineChartConfig = {
   },
 } satisfies ChartConfig
 
-export const tokenActivationLineChartData = [
-  { tokenPosition: 1, "latent-32734": 3, "latent-12017": 7, "latent-33044": 2, "latent-37536": 0 },
-  { tokenPosition: 2, "latent-32734": 6, "latent-12017": 4, "latent-33044": 1, "latent-37536": 0 },
-  { tokenPosition: 3, "latent-32734": 2, "latent-12017": 6, "latent-33044": 7, "latent-37536": 0 },
-  { tokenPosition: 4, "latent-32734": 5, "latent-12017": 2, "latent-33044": 3, "latent-37536": 0 },
-  { tokenPosition: 5, "latent-32734": 4, "latent-12017": 7, "latent-33044": 6, "latent-37536": 2 },
-  { tokenPosition: 6, "latent-32734": 7, "latent-12017": 3, "latent-33044": 4, "latent-37536": 3 },
-  { tokenPosition: 47, "latent-32734": 4, "latent-12017": 1, "latent-33044": 7, "latent-37536": 4 },
-  { tokenPosition: 71, "latent-32734": 4, "latent-12017": 7, "latent-33044": 1, "latent-37536": 5 },
-  { tokenPosition: 73, "latent-32734": 6, "latent-12017": 2, "latent-33044": 4, "latent-37536": 4 },
-  { tokenPosition: 74, "latent-32734": 1, "latent-12017": 5, "latent-33044": 7, "latent-37536": 0 },
-  { tokenPosition: 75, "latent-32734": 3, "latent-12017": 4, "latent-33044": 2, "latent-37536": 0 },
-  { tokenPosition: 96, "latent-32734": 7, "latent-12017": 5, "latent-33044": 2, "latent-37536": 0 },
-  { tokenPosition: 100, "latent-32734": 3, "latent-12017": 1, "latent-33044": 6, "latent-37536": 0 },
-  { tokenPosition: 298, "latent-32734": 1, "latent-12017": 3, "latent-33044": 7, "latent-37536": 2 },
-  { tokenPosition: 300, "latent-32734": 7, "latent-12017": 6, "latent-33044": 4, "latent-37536": 1 },
+export const tokenActivationData = [
+  { position: 1, token: "Adventure", "latent-32734": 3, "latent-12017": 7, "latent-33044": 2, "latent-37536": 0 },
+  { position: 2, token: "Mystery", "latent-32734": 6, "latent-12017": 4, "latent-33044": 1, "latent-37536": 0 },
+  { position: 3, token: "Explore", "latent-32734": 2, "latent-12017": 6, "latent-33044": 7, "latent-37536": 0 },
+  { position: 4, token: "Wisdom", "latent-32734": 5, "latent-12017": 2, "latent-33044": 3, "latent-37536": 0 },
+  { position: 5, token: "Journey", "latent-32734": 4, "latent-12017": 7, "latent-33044": 6, "latent-37536": 2 },
+  { position: 6, token: "Discovery", "latent-32734": 7, "latent-12017": 3, "latent-33044": 4, "latent-37536": 3 },
+  { position: 47, token: "Thunder", "latent-32734": 4, "latent-12017": 1, "latent-33044": 7, "latent-37536": 4 },
+  { position: 71, token: "Starlight", "latent-32734": 4, "latent-12017": 7, "latent-33044": 1, "latent-37536": 5 },
+  { position: 73, token: "Phoenix", "latent-32734": 6, "latent-12017": 2, "latent-33044": 4, "latent-37536": 4 },
+  { position: 74, token: "Harmony", "latent-32734": 1, "latent-12017": 5, "latent-33044": 7, "latent-37536": 0 },
+  { position: 75, token: "Velocity", "latent-32734": 3, "latent-12017": 4, "latent-33044": 2, "latent-37536": 0 },
+  { position: 96, token: "Crystal", "latent-32734": 7, "latent-12017": 5, "latent-33044": 2, "latent-37536": 0 },
+  { position: 100, token: "Horizon", "latent-32734": 3, "latent-12017": 1, "latent-33044": 6, "latent-37536": 0 },
+  { position: 298, token: "Nebula", "latent-32734": 1, "latent-12017": 3, "latent-33044": 7, "latent-37536": 2 },
+  { position: 300, token: "Infinity", "latent-32734": 7, "latent-12017": 6, "latent-33044": 4, "latent-37536": 1 },
 ]
 
-export const tokenActivationTokens = [
-  {
-    position: 1,
-    word: "Adventure",
+export const tokensByPosition = tokenActivationData.reduce(
+  (acc, tokenData) => {
+    acc[tokenData.position] = tokenData.token
+    return acc
   },
-  {
-    position: 2,
-    word: "Mystery",
-  },
-  {
-    position: 3,
-    word: "Explore",
-  },
-  {
-    position: 4,
-    word: "Wisdom",
-  },
-  {
-    position: 5,
-    word: "Journey",
-  },
-  {
-    position: 6,
-    word: "Discovery",
-  },
-  {
-    position: 47,
-    word: "Thunder",
-  },
-  {
-    position: 71,
-    word: "Starlight",
-  },
-  {
-    position: 73,
-    word: "Phoenix",
-  },
-  {
-    position: 74,
-    word: "Harmony",
-  },
-  {
-    position: 75,
-    word: "Velocity",
-  },
-  {
-    position: 96,
-    word: "Crystal",
-  },
-  {
-    position: 100,
-    word: "Horizon",
-  },
-  {
-    position: 298,
-    word: "Nebula",
-  },
-  {
-    position: 300,
-    word: "Infinity",
-  },
-]
+  {} as Record<number, string>
+)
