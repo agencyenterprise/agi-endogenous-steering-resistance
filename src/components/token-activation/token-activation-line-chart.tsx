@@ -53,11 +53,18 @@ export const TokenActivationLineChart = memo(
       )
     }, [highlightedPosition])
 
-    const lines = useMemo(() => {
-      return Object.entries(tokenActivationLineChartConfig).map(([key, config]) => (
-        <Line key={key} type="monotone" dataKey={key} stroke={config.color} dot={false} strokeWidth={2} />
-      ))
-    }, [])
+    const lines = useMemo(
+      () =>
+        Object.entries(tokenActivationLineChartConfig).map(([key, config]) => (
+          <Line key={key} type="monotone" dataKey={key} stroke={config.color} dot={false} strokeWidth={2} />
+        )),
+      []
+    )
+
+    const xAxis = useMemo(
+      () => <XAxis dataKey="position" tickLine={false} tickMargin={10} axisLine={false} interval="preserveStartEnd" />,
+      []
+    )
 
     return (
       <ChartContainer config={tokenActivationLineChartConfig} className="min-h-[200px] w-full">
@@ -68,13 +75,10 @@ export const TokenActivationLineChart = memo(
           onMouseLeave={handleMouseLeave}
         >
           <CartesianGrid vertical={false} />
-          <XAxis dataKey="position" tickLine={false} tickMargin={10} axisLine={false} interval="preserveStartEnd" />
+          {xAxis}
           <YAxis />
-
           <Legend />
-
           {referenceLine}
-
           {lines}
         </LineChart>
       </ChartContainer>

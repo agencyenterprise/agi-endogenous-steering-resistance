@@ -31,7 +31,7 @@ export function TableOfContents() {
 
         <ul className="flex flex-col gap-2">
           {contents.map(content => (
-            <li className="hover:underline cursor-pointer" key={content.href} onClick={() => handleClick(content.href)}>
+            <li className="hover:underline cursor-pointer w-fit" key={content.href} onClick={() => handleClick(content.href)}>
               {content.title}
             </li>
           ))}
