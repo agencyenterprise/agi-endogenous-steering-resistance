@@ -28,7 +28,7 @@ export default function Home() {
           <Citation title="Citation" author="Author" journal="Journal" year="2025" url="https://www.google.com" />
         </Section>
 
-        <Section id="full-width" className="max-w-none px-0">
+        <Section id="full-width" fullWidth>
           <div className="bg-blue-100 text-xl px-4">Full Width Section</div>
         </Section>
 
