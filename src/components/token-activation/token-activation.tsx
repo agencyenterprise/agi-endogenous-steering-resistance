@@ -42,8 +42,8 @@ export function TokenActivation() {
   return (
     <section id="basic-chart">
       <h2 className="text-5xl font-bold">Basic Chart</h2>
-      <TokenActivationLineChart 
-        onTokenHover={handleTokenHover} 
+      <TokenActivationLineChart
+        onTokenHover={handleTokenHover}
         onTokenLeave={handleTokenLeave}
         highlightedPosition={highlightedPosition}
       />
