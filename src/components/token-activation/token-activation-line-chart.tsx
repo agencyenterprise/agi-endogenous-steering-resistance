@@ -4,41 +4,32 @@ import { memo, useCallback, useMemo } from "react"
 import { CartesianGrid, Legend, Line, LineChart, ReferenceLine, XAxis, YAxis } from "recharts"
 
 import { ChartContainer } from "@/components/ui/chart"
-import { tokenActivationLineChartConfig, tokenActivationLineChartData } from "@/mocks/token-activation-data"
+import { tokenActivationData, tokenActivationLineChartConfig } from "@/mocks/token-activation-data"
 
 interface TokenActivationLineChartProps {
-  onTokenHover?: (tokenPosition: number) => void
-  onTokenLeave?: () => void
-  highlightedPosition?: number | null
+  highlightedPosition: number | null
+  setHighlightedPosition: (position: number | null) => void
 }
 
 export const TokenActivationLineChart = memo(
-  function TokenActivationLineChart({
-    onTokenHover,
-    onTokenLeave,
-    highlightedPosition,
-  }: TokenActivationLineChartProps) {
-    // Memoize the chart data to prevent unnecessary re-renders
-    const chartData = useMemo(() => tokenActivationLineChartData, [])
-    const chartConfig = useMemo(() => tokenActivationLineChartConfig, [])
-
+  function TokenActivationLineChart({ highlightedPosition, setHighlightedPosition }: TokenActivationLineChartProps) {
     const handleMouseMove = useCallback(
       (event: { activeLabel?: string | number } | null) => {
-        if (event && event.activeLabel && onTokenHover) {
-          const tokenPosition = parseInt(String(event.activeLabel))
-          onTokenHover(tokenPosition)
-        }
+        if (!event?.activeLabel) return
+
+        const position = parseInt(String(event.activeLabel))
+        if (isNaN(position)) return
+
+        setHighlightedPosition(position)
       },
-      [onTokenHover]
+
+      [setHighlightedPosition]
     )
 
     const handleMouseLeave = useCallback(() => {
-      if (onTokenLeave) {
-        onTokenLeave()
-      }
-    }, [onTokenLeave])
+      setHighlightedPosition(null)
+    }, [setHighlightedPosition])
 
-    // Memoize the reference line to prevent re-renders when position changes
     const referenceLine = useMemo(() => {
       if (highlightedPosition === null) return null
 
@@ -62,36 +53,35 @@ export const TokenActivationLineChart = memo(
       )
     }, [highlightedPosition])
 
+    const lines = useMemo(() => {
+      return Object.entries(tokenActivationLineChartConfig).map(([key, config]) => (
+        <Line key={key} type="monotone" dataKey={key} stroke={config.color} dot={false} strokeWidth={2} />
+      ))
+    }, [])
+
     return (
-      <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-        <LineChart accessibilityLayer data={chartData} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+      <ChartContainer config={tokenActivationLineChartConfig} className="min-h-[200px] w-full">
+        <LineChart
+          accessibilityLayer
+          data={tokenActivationData}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
           <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="tokenPosition"
-            tickLine={false}
-            tickMargin={10}
-            axisLine={false}
-            interval="preserveStartEnd"
-          />
+          <XAxis dataKey="position" tickLine={false} tickMargin={10} axisLine={false} interval="preserveStartEnd" />
           <YAxis />
+
           <Legend />
 
           {referenceLine}
 
-          <Line type="monotone" dataKey="latent-32734" stroke="blue" dot={false} />
-          <Line type="monotone" dataKey="latent-12017" stroke="green" dot={false} />
-          <Line type="monotone" dataKey="latent-33044" stroke="red" dot={false} />
-          <Line type="monotone" dataKey="latent-37536" stroke="lightblue" dot={false} />
+          {lines}
         </LineChart>
       </ChartContainer>
     )
   },
   (prevProps, nextProps) => {
     // Custom comparison function to prevent unnecessary re-renders
-    return (
-      prevProps.highlightedPosition === nextProps.highlightedPosition &&
-      prevProps.onTokenHover === nextProps.onTokenHover &&
-      prevProps.onTokenLeave === nextProps.onTokenLeave
-    )
+    return prevProps.highlightedPosition === nextProps.highlightedPosition
   }
 )
