@@ -4,9 +4,8 @@ const nextConfig: NextConfig = {
   /* config options here */
 
   // GitHub Pages configuration
-  output: "export",
-  basePath: "/agi-endogenous-steering-resistance",
-  // Images must be unoptimized for GitHub Pages
+  output: process.env.NODE_ENV === "production" ? "export" : undefined,
+  basePath: process.env.NODE_ENV === "production" ? "/agi-endogenous-steering-resistance" : "",
   images: {
     unoptimized: true,
   },
