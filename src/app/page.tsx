@@ -1,9 +1,9 @@
 import * as motion from "motion/react-client"
 
-import { BasicKatex } from "@/components/basic-katex"
 import { Citation } from "@/components/citation"
 import { CodeBlock } from "@/components/code-block"
 import { EsrMethods } from "@/components/esr-methods"
+import { MathLatex } from "@/components/math-latex"
 import { NextSectionArrowDown } from "@/components/next-section-arrow-down"
 import { Section } from "@/components/section"
 import { TableOfContents } from "@/components/table-of-contents"
@@ -11,57 +11,19 @@ import { TokenActivation } from "@/components/token-activation/token-activation"
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-16 py-16">
-      <div className="relative flex justify-center items-center flex-col gap-16">
+    <div className="py-8 md:py-16">
+      <div className="relative flex justify-center items-center flex-col gap-8 md:gap-16">
         <TableOfContents />
 
         <Section id="introduction" title="Introduction">
           <div>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione doloremque amet ad sint tempore vitae,
-            esse, et distinctio quae at corrupti hic, totam perspiciatis nisi dolorem iure autem mollitia alias.
-          </div>
-        </Section>
-
-        <hr className="w-full" />
-
-        <Section id="citation" title="Citation">
-          <Citation title="Citation" author="Author" journal="Journal" year="2025" url="https://www.google.com" />
-        </Section>
-
-        <Section id="full-width" fullWidth>
-          <div className="bg-blue-100 text-xl px-4">Full Width Section</div>
-        </Section>
-
-        <Section id="code" title="Code Block">
-          <CodeBlock code="console.log('Hello, world!')" />
-        </Section>
-
-        <Section id="lorem-ipsum" title="Lorem Ipsum">
-          <div>
-            <motion.p className="text-xl">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel pellentesque mi. Curabitur nunc neque,
-              auctor non dictum tristique, posuere quis quam. Vivamus non dui mi. Sed a augue enim. Morbi sed sagittis
-              orci. Maecenas maximus elit et sodales faucibus. Nunc eget massa non augue dapibus egestas at eu metus.
-              Donec felis odio, dapibus vel fermentum vel, interdum et tellus. Vivamus varius eros ut tempus fermentum.
-              Etiam venenatis libero vel felis vulputate, non faucibus tortor molestie. Nunc sit amet velit egestas,
-              luctus lorem id, consectetur nibh. Maecenas sed varius nisi. Aliquam tincidunt magna nec felis semper
-              sagittis. Fusce auctor scelerisque nibh et dapibus. Nunc id urna id magna molestie tempus.
-            </motion.p>
-            <motion.p className="text-xl">
-              Maecenas ut nisi in urna interdum sodales. Nunc condimentum mauris ut rhoncus finibus. Aliquam sit amet
-              est convallis, dignissim eros lacinia, tempor nulla. Duis imperdiet orci nec eros ultricies semper.
-              Vivamus pretium augue quam, a tincidunt quam euismod ut. Fusce dapibus nisl eu tincidunt egestas.
-              Vestibulum consectetur vulputate tincidunt. Mauris nec volutpat nunc. Etiam magna ligula, aliquet at quam
-              sed, ornare cursus odio. Vestibulum dignissim orci at lorem fermentum, a blandit lectus molestie. Donec
-              commodo lorem id dui dignissim aliquam. Morbi non leo tristique augue lacinia sagittis.
-            </motion.p>
-            <motion.p className="text-xl">
-              Quisque rhoncus, purus in suscipit tincidunt, neque quam molestie elit, vitae dignissim erat magna
-              faucibus lorem. Fusce eget mauris interdum, eleifend quam ac, ornare risus. Pellentesque sit amet feugiat
-              ante, ut pharetra magna. Vivamus pharetra accumsan neque, sit amet eleifend arcu pellentesque at. Duis
-              ornare arcu a pretium tincidunt. In dapibus sapien ex, at dictum elit accumsan at. Pellentesque et dolor
-              rhoncus, gravida magna sit amet, accumsan justo.
-            </motion.p>
+            esse, et distinctio quae at corrupti hic, totam perspiciatis nisi dolorem iure autem mollitia alias. Lorem
+            ipsum dolor sit amet consectetur adipisicing elit. Optio, nemo recusandae numquam vitae sit sunt totam
+            eligendi dicta debitis ducimus id consequuntur, quod obcaecati in cum sequi iste maxime sed? Lorem ipsum
+            dolor sit amet consectetur adipisicing elit. Perferendis incidunt vel corporis voluptates eligendi suscipit
+            doloribus maiores beatae ut? Mollitia tempore debitis adipisci suscipit enim similique commodi rem inventore
+            odit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
           </div>
 
           <motion.div
@@ -78,12 +40,35 @@ export default function Home() {
           <EsrMethods />
         </Section>
 
-        <Section id="basic-chart" title="Token Activation Chart">
+        <Section id="token-activation-chart" title="Token Activation Chart">
           <TokenActivation />
         </Section>
 
-        <Section id="basic-katex" title="Basic Katex">
-          <BasicKatex />
+        <Section id="components" title="Components">
+          <div className="flex flex-col gap-2">
+            <div>Citation:</div>
+            <Citation title="Citation" author="Author" journal="Journal" year="2025" url="https://www.google.com" />
+          </div>
+          <hr />
+
+          <div className="flex flex-col gap-2">
+            <div>Code Block:</div>
+            <CodeBlock code="console.log('Hello, world!')" />
+          </div>
+          <hr />
+
+          <div className="flex flex-col gap-2">
+            <div>Math Formula:</div>
+            <MathLatex />
+          </div>
+        </Section>
+
+        <Section id="full-width" fullWidth>
+          <div className="bg-blue-100 text-xl p-4">Full Width Section</div>
+        </Section>
+
+        <Section id="full-width-with-title" fullWidth title="Full Width Section with Title">
+          <div className="bg-blue-100 text-xl p-4">Full Width Section with Title</div>
         </Section>
       </div>
     </div>

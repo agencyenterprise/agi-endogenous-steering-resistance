@@ -1,3 +1,4 @@
+import { SectionTitle } from "@/components/section-title"
 import { cn } from "@/lib/utils"
 
 interface SectionProps {
@@ -13,14 +14,14 @@ export function Section({ id, title, children, className, fullWidth }: SectionPr
     <section
       id={id}
       className={cn(
-        "flex flex-col w-full gap-4 max-w-2xl xl:max-w-3xl px-8",
+        "flex flex-col w-full gap-4 max-w-2xl xl:max-w-3xl px-8 z-10",
         {
           "max-w-none! px-0": fullWidth,
         },
         className
       )}
     >
-      {title && <h2 className="text-5xl font-bold">{title}</h2>}
+      {title && <SectionTitle title={title} />}
       {children}
     </section>
   )

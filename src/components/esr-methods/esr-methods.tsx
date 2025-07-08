@@ -17,7 +17,7 @@ export function EsrMethods() {
   const data = getEsrMethodsData(activation, prompt)
 
   return (
-    <div className="flex flex-col items-center gap-8 my-16">
+    <div className="flex flex-col items-center gap-8">
       <EsrPersonas />
 
       <Separator />
