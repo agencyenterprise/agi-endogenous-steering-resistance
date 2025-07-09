@@ -1,6 +1,5 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-
-import { PromptEnum } from "./esr-methods-data"
+import { PromptEnum } from "@/mocks/esr-methods-data"
 
 const prompts: { value: PromptEnum; label: string }[] = [
   {

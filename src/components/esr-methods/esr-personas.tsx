@@ -1,6 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card"
-
-import { RoleEnum, rolesDetails } from "./esr-methods-data"
+import { RoleEnum, rolesDetails } from "@/mocks/esr-methods-data"
 
 const personas: {
   name: string
