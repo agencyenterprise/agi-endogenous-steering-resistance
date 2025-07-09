@@ -1,9 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { Fragment, useState } from "react"
 
+import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
-import { tokensByPosition } from "@/mocks/token-activation-data"
+import { tokenActivationLineChartConfig, tokensByPosition } from "@/mocks/token-activation-data"
 
 import { TokenActivationLineChart } from "./token-activation-line-chart"
 
@@ -11,29 +12,54 @@ export function TokenActivation() {
   const [highlightedPosition, setHighlightedPosition] = useState<number | null>(null)
 
   return (
-    <div>
+    <div className="flex flex-col gap-8">
       <TokenActivationLineChart
         highlightedPosition={highlightedPosition}
         setHighlightedPosition={setHighlightedPosition}
       />
 
-      <div className="flex flex-wrap gap-2 mt-4">
-        {Object.entries(tokensByPosition).map(([position, token]) => (
-          <span
-            key={position}
-            className={cn(
-              "text-lg font-medium transition-all duration-200 cursor-pointer px-2 py-1 rounded-md shadow-md",
-              highlightedPosition === parseInt(position)
-                ? "bg-blue-200 text-blue-800"
-                : "text-gray-600 hover:text-gray-800 hover:bg-gray-100"
-            )}
-            onMouseEnter={() => setHighlightedPosition(parseInt(position))}
-            onMouseLeave={() => setHighlightedPosition(null)}
+      <div className="flex gap-4">
+        {Object.entries(tokenActivationLineChartConfig).map(([key, value]) => (
+          <div
+            key={key}
+            className="flex items-start gap-2 p-2 text-white rounded-lg"
+            style={{
+              backgroundColor: value.color,
+            }}
           >
-            {token}
-          </span>
+            <div className="mt-1.5 w-2 h-2 rounded-full bg-background" />
+            <div className="flex flex-col">
+              <div className="font-semibold text-sm">{value.label}</div>
+              <small className="text-xs italic">{key}</small>
+            </div>
+          </div>
         ))}
       </div>
+
+      <Card>
+        <CardContent>
+          <div className="flex flex-wrap gap-1">
+            {Object.entries(tokensByPosition).map(([position, tokenData]) => (
+              <Fragment key={position}>
+                <span
+                  className={cn(
+                    "transition-all duration-200 px-2 py-1.5 rounded-lg border border-muted shadow-sm cursor-pointer",
+                    {
+                      "border-blue-500 shadow-blue-500": highlightedPosition === parseInt(position),
+                    }
+                  )}
+                  onMouseEnter={() => setHighlightedPosition(parseInt(position))}
+                  onMouseLeave={() => setHighlightedPosition(null)}
+                >
+                  {tokenData.token}
+                </span>
+
+                {tokenData.breakLine && <div className="w-full" />}
+              </Fragment>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }

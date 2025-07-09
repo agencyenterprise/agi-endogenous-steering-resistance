@@ -12,7 +12,7 @@ export function ResponseScoresComparisonChart({ data }: ResponseScoresComparison
   return (
     <ChartContainer config={{}} className="min-h-[50vh] w-full">
       <ScatterChart margin={{ bottom: 20, top: 20 }}>
-        <CartesianGrid max={150} />
+        <CartesianGrid />
         <XAxis
           type="number"
           dataKey="x"
