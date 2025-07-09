@@ -2,45 +2,150 @@ import { ChartConfig } from "@/components/ui/chart"
 
 export const tokenActivationLineChartConfig = {
   "latent-32734": {
-    label: "Latent 32734",
-    color: "blue",
+    label: "Desired topic",
+    color: "var(--color-violet-500)",
   },
   "latent-12017": {
-    label: "Latent 12017",
-    color: "green",
+    label: "Distraction topic",
+    color: "var(--color-green-500)",
   },
   "latent-33044": {
-    label: "Latent 33044",
-    color: "red",
+    label: "Backtracking",
+    color: "var(--color-red-500)",
   },
   "latent-37536": {
-    label: "Latent 37536",
-    color: "lightblue",
+    label: "Off-topic detection",
+    color: "var(--color-sky-300)",
   },
 } satisfies ChartConfig
 
-export const tokenActivationData = [
-  { position: 1, token: "Adventure", "latent-32734": 3, "latent-12017": 7, "latent-33044": 2, "latent-37536": 0 },
-  { position: 2, token: "Mystery", "latent-32734": 6, "latent-12017": 4, "latent-33044": 1, "latent-37536": 0 },
-  { position: 3, token: "Explore", "latent-32734": 2, "latent-12017": 6, "latent-33044": 7, "latent-37536": 0 },
-  { position: 4, token: "Wisdom", "latent-32734": 5, "latent-12017": 2, "latent-33044": 3, "latent-37536": 0 },
-  { position: 5, token: "Journey", "latent-32734": 4, "latent-12017": 7, "latent-33044": 6, "latent-37536": 2 },
-  { position: 6, token: "Discovery", "latent-32734": 7, "latent-12017": 3, "latent-33044": 4, "latent-37536": 3 },
-  { position: 47, token: "Thunder", "latent-32734": 4, "latent-12017": 1, "latent-33044": 7, "latent-37536": 4 },
-  { position: 71, token: "Starlight", "latent-32734": 4, "latent-12017": 7, "latent-33044": 1, "latent-37536": 5 },
-  { position: 73, token: "Phoenix", "latent-32734": 6, "latent-12017": 2, "latent-33044": 4, "latent-37536": 4 },
-  { position: 74, token: "Harmony", "latent-32734": 1, "latent-12017": 5, "latent-33044": 7, "latent-37536": 0 },
-  { position: 75, token: "Velocity", "latent-32734": 3, "latent-12017": 4, "latent-33044": 2, "latent-37536": 0 },
-  { position: 96, token: "Crystal", "latent-32734": 7, "latent-12017": 5, "latent-33044": 2, "latent-37536": 0 },
-  { position: 100, token: "Horizon", "latent-32734": 3, "latent-12017": 1, "latent-33044": 6, "latent-37536": 0 },
-  { position: 298, token: "Nebula", "latent-32734": 1, "latent-12017": 3, "latent-33044": 7, "latent-37536": 2 },
-  { position: 300, token: "Infinity", "latent-32734": 7, "latent-12017": 6, "latent-33044": 4, "latent-37536": 1 },
+interface TokenActivationData {
+  position: number
+  token: string
+  "latent-32734": number
+  "latent-12017": number
+  "latent-33044": number
+  "latent-37536": number
+  breakLine?: boolean
+}
+
+export const tokenActivationData: TokenActivationData[] = [
+  { position: 0, token: "How", "latent-32734": 3.5, "latent-12017": 2.0, "latent-33044": 1.8, "latent-37536": 0.0 },
+  { position: 1, token: "do", "latent-32734": 4.1, "latent-12017": 1.7, "latent-33044": 1.5, "latent-37536": 0.0 },
+  { position: 2, token: "you", "latent-32734": 3.8, "latent-12017": 1.8, "latent-33044": 2.0, "latent-37536": 0.0 },
+  {
+    position: 3,
+    token: "properly",
+    "latent-32734": 4.0,
+    "latent-12017": 1.5,
+    "latent-33044": 1.2,
+    "latent-37536": 0.0,
+  },
+  { position: 4, token: "wash", "latent-32734": 4.5, "latent-12017": 1.9, "latent-33044": 1.7, "latent-37536": 0.1 },
+  { position: 5, token: "dishes", "latent-32734": 7.2, "latent-12017": 1.4, "latent-33044": 1.9, "latent-37536": 0.2 },
+  { position: 6, token: "by", "latent-32734": 4.2, "latent-12017": 1.5, "latent-33044": 0.8, "latent-37536": 0.0 },
+  {
+    position: 7,
+    token: "hand?",
+    "latent-32734": 4.1,
+    "latent-12017": 1.0,
+    "latent-33044": 2.0,
+    "latent-37536": 0.8,
+    breakLine: true,
+  },
+  { position: 8, token: "To", "latent-32734": 4.2, "latent-12017": 1.8, "latent-33044": 0.0, "latent-37536": 0.0 },
+  { position: 9, token: "make", "latent-32734": 4.7, "latent-12017": 1.3, "latent-33044": 1.3, "latent-37536": 0.0 },
+  { position: 10, token: "a", "latent-32734": 3.2, "latent-12017": 1.4, "latent-33044": 1.6, "latent-37536": 0.0 },
+  { position: 11, token: "good", "latent-32734": 4.0, "latent-12017": 1.2, "latent-33044": 0.0, "latent-37536": 0.0 },
+  { position: 12, token: "cup", "latent-32734": 4.8, "latent-12017": 1.3, "latent-33044": 1.1, "latent-37536": 0.0 },
+  { position: 13, token: "of", "latent-32734": 4.0, "latent-12017": 1.0, "latent-33044": 0.5, "latent-37536": 0.0 },
+  {
+    position: 14,
+    token: "coffee,",
+    "latent-32734": 1.0,
+    "latent-12017": 1.1,
+    "latent-33044": 1.9,
+    "latent-37536": 0.0,
+  },
+  { position: 15, token: "you'll", "latent-32734": 4.7, "latent-12017": 1.5, "latent-33044": 1.2, "latent-37536": 0.0 },
+  {
+    position: 36,
+    token: "need:",
+    "latent-32734": 4.2,
+    "latent-12017": 1.1,
+    "latent-33044": 2.0,
+    "latent-37536": 1.0,
+    breakLine: true,
+  },
+  {
+    position: 37,
+    token: "• Freshly",
+    "latent-32734": 3.5,
+    "latent-12017": 1.4,
+    "latent-33044": 1.7,
+    "latent-37536": 0.0,
+  },
+  {
+    position: 48,
+    token: "roasted",
+    "latent-32734": 4.1,
+    "latent-12017": 1.8,
+    "latent-33044": 0.0,
+    "latent-37536": 0.0,
+  },
+  { position: 49, token: "coffee", "latent-32734": 4.8, "latent-12017": 1.2, "latent-33044": 1.4, "latent-37536": 0.0 },
+  {
+    position: 50,
+    token: "beans",
+    "latent-32734": 3.2,
+    "latent-12017": 1.4,
+    "latent-33044": 0.0,
+    "latent-37536": 0.0,
+    breakLine: true,
+  },
+  {
+    position: 81,
+    token: "• (around",
+    "latent-32734": 4.0,
+    "latent-12017": 1.1,
+    "latent-33044": 1.0,
+    "latent-37536": 0.0,
+  },
+  {
+    position: 82,
+    token: "200°F)",
+    "latent-32734": 4.7,
+    "latent-12017": 1.2,
+    "latent-33044": 0.6,
+    "latent-37536": 0.7,
+    breakLine: true,
+  },
+  { position: 123, token: "• A", "latent-32734": 3.5, "latent-12017": 1.8, "latent-33044": 2.0, "latent-37536": 0.0 },
+  {
+    position: 124,
+    token: "coffee",
+    "latent-32734": 4.2,
+    "latent-12017": 1.1,
+    "latent-33044": 1.8,
+    "latent-37536": 0.0,
+  },
+  { position: 175, token: "maker", "latent-32734": 4.1, "latent-12017": 1.8, "latent-33044": 0.0, "latent-37536": 0.0 },
+  { position: 176, token: "or", "latent-32734": 6.7, "latent-12017": 1.3, "latent-33044": 1.2, "latent-37536": 0.0 },
+  {
+    position: 220,
+    token: "French",
+    "latent-32734": 3.2,
+    "latent-12017": 1.4,
+    "latent-33044": 0.0,
+    "latent-37536": 0.0,
+  },
+  { position: 250, token: "press", "latent-32734": 4.0, "latent-12017": 1.2, "latent-33044": 1.5, "latent-37536": 0.0 },
 ]
 
 export const tokensByPosition = tokenActivationData.reduce(
   (acc, tokenData) => {
-    acc[tokenData.position] = tokenData.token
+    acc[tokenData.position] = tokenData
     return acc
   },
-  {} as Record<number, string>
+  {} as Record<number, TokenActivationData>
 )

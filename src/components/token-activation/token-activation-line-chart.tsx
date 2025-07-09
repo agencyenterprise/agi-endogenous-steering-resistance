@@ -1,7 +1,7 @@
 "use client"
 
 import { memo, useCallback, useMemo } from "react"
-import { CartesianGrid, Legend, Line, LineChart, XAxis, YAxis } from "recharts"
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
 
 import { ChartContainer, ReferenceLine } from "@/components/ui/chart"
 import { tokenActivationData, tokenActivationLineChartConfig } from "@/mocks/token-activation-data"
@@ -53,7 +53,21 @@ export const TokenActivationLineChart = memo(
     )
 
     const xAxis = useMemo(
-      () => <XAxis dataKey="position" tickLine={false} tickMargin={10} axisLine={false} interval="preserveStartEnd" />,
+      () => (
+        <XAxis
+          dataKey="position"
+          tickLine={false}
+          tickMargin={10}
+          axisLine={false}
+          interval="preserveStartEnd"
+          label={{
+            value: "Token Position",
+            position: "insideBottom",
+            offset: -20,
+            style: { textAnchor: "middle", fontSize: "16px" },
+          }}
+        />
+      ),
       []
     )
 
@@ -64,11 +78,19 @@ export const TokenActivationLineChart = memo(
           data={tokenActivationData}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
+          margin={{ bottom: 20, top: 20 }}
         >
           <CartesianGrid vertical={false} />
           {xAxis}
-          <YAxis />
-          <Legend />
+          <YAxis
+            label={{
+              value: "Activation Value",
+              position: "insideLeft",
+              angle: -90,
+              offset: 10,
+              style: { textAnchor: "middle", fontSize: "16px" },
+            }}
+          />
           {referenceLine}
           {lines}
         </LineChart>
