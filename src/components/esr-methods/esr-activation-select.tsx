@@ -1,6 +1,5 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-
-import { ActivationEnum } from "./esr-methods-data"
+import { ActivationEnum } from "@/mocks/esr-methods-data"
 
 const activations: { value: ActivationEnum; label: string }[] = [
   {

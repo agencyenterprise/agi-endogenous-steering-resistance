@@ -3,6 +3,7 @@ import * as motion from "motion/react-client"
 import { Citation } from "@/components/citation"
 import { CodeBlock } from "@/components/code-block"
 import { EsrMethods } from "@/components/esr-methods"
+import { FeatureHeatmap } from "@/components/feature-heatmap"
 import { MathLatex } from "@/components/math-latex"
 import { NextSectionArrowDown } from "@/components/next-section-arrow-down"
 import { ResponseScoresComparison } from "@/components/response-scores-comparison"
@@ -49,7 +50,11 @@ export default function Home() {
           <ResponseScoresComparison />
         </Section>
 
-        <Section id="components" title="Components">
+        <Section id="feature-heatmap" title="Feature Heatmap">
+          <FeatureHeatmap />
+        </Section>
+
+        <Section id="app-components" title="Other App Components Below">
           <div className="flex flex-col gap-2">
             <div>Citation:</div>
             <Citation title="Citation" author="Author" journal="Journal" year="2025" url="https://www.google.com" />

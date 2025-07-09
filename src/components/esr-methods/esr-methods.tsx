@@ -3,10 +3,10 @@
 import { useState } from "react"
 
 import { Separator } from "@/components/ui/separator"
+import { ActivationEnum, PromptEnum, getEsrMethodsData } from "@/mocks/esr-methods-data"
 
 import { EsrActivationSelect } from "./esr-activation-select"
 import { EsrMessages } from "./esr-messages"
-import { ActivationEnum, PromptEnum, getEsrMethodsData } from "./esr-methods-data"
 import { EsrPersonas } from "./esr-personas"
 import { EsrPromptSelect } from "./esr-prompt-select"
 

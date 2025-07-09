@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils"
-
-import { Message, rolesDetails } from "./esr-methods-data"
+import { Message, rolesDetails } from "@/mocks/esr-methods-data"
 
 export function EsrMessages({ title, messages = [] }: { title: string; messages: Message[] }) {
   return (
