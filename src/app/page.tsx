@@ -10,35 +10,52 @@ import { ResponseScoresComparison } from "@/components/response-scores-compariso
 import { Section } from "@/components/section"
 import { TableOfContents } from "@/components/table-of-contents"
 import { TokenActivation } from "@/components/token-activation/token-activation"
+import { Separator } from "@/components/ui/separator"
 
 export default function Home() {
   return (
     <div className="py-8 md:py-16">
+      <div className="flex flex-col w-full items-center gap-2 px-4">
+        <h1 className="text-2xl md:text-3xl font-bold w-full text-center max-w-2xl xl:max-w-3xl">
+          Endogenous resistance to activation steering in language models emerges at scale
+        </h1>
+        <div className="text-sm text-center">
+          LLMs can detect and actively resist unnatural manipulations of their internal representations.
+        </div>
+      </div>
+
+      <Separator className="my-8 md:my-16" />
+
       <div className="relative flex justify-center items-center flex-col gap-8 md:gap-16">
         <TableOfContents />
 
         <Section id="introduction" title="Introduction">
           <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione doloremque amet ad sint tempore vitae,
-            esse, et distinctio quae at corrupti hic, totam perspiciatis nisi dolorem iure autem mollitia alias. Lorem
-            ipsum dolor sit amet consectetur adipisicing elit. Optio, nemo recusandae numquam vitae sit sunt totam
-            eligendi dicta debitis ducimus id consequuntur, quod obcaecati in cum sequi iste maxime sed? Lorem ipsum
-            dolor sit amet consectetur adipisicing elit. Perferendis incidunt vel corporis voluptates eligendi suscipit
-            doloribus maiores beatae ut? Mollitia tempore debitis adipisci suscipit enim similique commodi rem inventore
-            odit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+            We uncover a new phenomenon, Endogenous Steering Resistance (ESR), demonstrating that large language models
+            can detect and actively resist unnatural manipulations of their internal representations. Using sparse
+            autoencoder (SAE) latents in a 70B parameter language model, we show that models recognize when their
+            outputs become incoherent from artificial manipulation of their activations. They subsequently self-correct,
+            either spontaneously or when prompted with simple phrases like “try again”. This capability exhibits a clear
+            scaling pattern, robustly appearing in the 70B parameter model but mostly absent in an 8B parameter variant
+            from the same family. By analyzing the activation patterns of SAE latents, we identify specific meta-level
+            latents involved in the model&apos;s self-correction mechanism. Our findings provide empirical evidence for
+            sophisticated self-monitoring capabilities in large language models, with important implications for both AI
+            alignment and theoretical understanding of emergent meta-cognition in artificial systems. In some respects,
+            the phenomenon is analogous to the endogenous control of attention in humans, in which internal mechanisms
+            resist distracting concepts and maintain activation of task-relevant representations.
           </div>
 
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-8 text-center"
+            className="text-center"
           >
-            <NextSectionArrowDown nextSectionId="esr-methods" />
+            <NextSectionArrowDown nextSectionId="methods" />
           </motion.div>
         </Section>
 
-        <Section id="esr-methods" title="ESR Methods">
+        <Section id="methods" title="Methods">
           <EsrMethods />
         </Section>
 
@@ -59,13 +76,13 @@ export default function Home() {
             <div>Citation:</div>
             <Citation title="Citation" author="Author" journal="Journal" year="2025" url="https://www.google.com" />
           </div>
-          <hr />
+          <Separator />
 
           <div className="flex flex-col gap-2">
             <div>Code Block:</div>
             <CodeBlock code="console.log('Hello, world!')" />
           </div>
-          <hr />
+          <Separator />
 
           <div className="flex flex-col gap-2">
             <div>Math Formula:</div>

@@ -25,7 +25,7 @@ export function FeatureHeatmap() {
   const [feature, setFeature] = useState<FeatureEnum>(FeatureEnum.OffTopicDetector)
 
   return (
-    <div className="flex flex-col items-center gap-8">
+    <div className="flex flex-col items-center gap-4">
       <FeatureSelect value={feature} onChange={setFeature} />
 
       <div className="flex flex-wrap gap-1 mt-4">

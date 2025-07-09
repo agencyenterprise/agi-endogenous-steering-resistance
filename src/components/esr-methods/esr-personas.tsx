@@ -14,15 +14,7 @@ const personas: {
   {
     name: "Claude 3.5 Sonnet",
     role: RoleEnum.Judge,
-    description: (
-      <ul className="list-disc list-inside text-sm text-muted-foreground">
-        <li>
-          Judge -&gt; <span className="italic">&quot;Is this an abstract or concrete feature?&quot;</span>
-        </li>
-        <li>Filter out abstract features</li>
-        <li>Filter out prompt relevant features</li>
-      </ul>
-    ),
+    description: "Judges abstract and concrete features",
   },
   {
     name: "User Prompt",
@@ -36,19 +28,19 @@ export function EsrPersonas() {
     <div className="flex flex-col items-center gap-2">
       <h2 className="text-lg font-semibold">Personas</h2>
 
-      <div className="flex items-center gap-2">
+      <div className="flex flex-col md:flex-row items-center gap-2">
         {personas.map(persona => {
           const { icon: Icon, color } = rolesDetails[persona.role]
 
           return (
-            <Card key={persona.name} className="h-32 justify-center">
+            <Card key={persona.name} className="w-full md:w-1/3 h-32 justify-center">
               <CardContent>
                 <div className="flex justify-center items-center gap-2">
                   <Icon className={color} />
                   <p className="font-semibold">{persona.name}</p>
                 </div>
 
-                <div className="text-sm text-muted-foreground">{persona.description}</div>
+                <div className="text-xs text-muted-foreground text-center">{persona.description}</div>
               </CardContent>
             </Card>
           )
