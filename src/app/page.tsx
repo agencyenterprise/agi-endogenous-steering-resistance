@@ -5,6 +5,7 @@ import { CodeBlock } from "@/components/code-block"
 import { EsrMethods } from "@/components/esr-methods"
 import { MathLatex } from "@/components/math-latex"
 import { NextSectionArrowDown } from "@/components/next-section-arrow-down"
+import { ResponseScoresComparison } from "@/components/response-scores-comparison"
 import { Section } from "@/components/section"
 import { TableOfContents } from "@/components/table-of-contents"
 import { TokenActivation } from "@/components/token-activation/token-activation"
@@ -40,8 +41,12 @@ export default function Home() {
           <EsrMethods />
         </Section>
 
-        <Section id="token-activation-chart" title="Token Activation Chart">
+        <Section id="token-activation" title="Token Activation">
           <TokenActivation />
+        </Section>
+
+        <Section id="response-scores-comparison" title="Response Scores Comparison">
+          <ResponseScoresComparison />
         </Section>
 
         <Section id="components" title="Components">
