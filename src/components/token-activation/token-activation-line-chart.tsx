@@ -1,9 +1,9 @@
 "use client"
 
 import { memo, useCallback, useMemo } from "react"
-import { CartesianGrid, Legend, Line, LineChart, ReferenceLine, XAxis, YAxis } from "recharts"
+import { CartesianGrid, Legend, Line, LineChart, XAxis, YAxis } from "recharts"
 
-import { ChartContainer } from "@/components/ui/chart"
+import { ChartContainer, ReferenceLine } from "@/components/ui/chart"
 import { tokenActivationData, tokenActivationLineChartConfig } from "@/mocks/token-activation-data"
 
 interface TokenActivationLineChartProps {
@@ -36,18 +36,9 @@ export const TokenActivationLineChart = memo(
       return (
         <ReferenceLine
           x={highlightedPosition}
-          stroke="#3b82f6"
-          strokeWidth={2}
-          strokeDasharray="5 5"
           label={{
             value: `Position ${highlightedPosition}`,
             position: "top",
-            style: {
-              fill: "#3b82f6",
-              fontSize: "12px",
-              fontWeight: "500",
-              textAnchor: "middle",
-            },
           }}
         />
       )
@@ -67,7 +58,7 @@ export const TokenActivationLineChart = memo(
     )
 
     return (
-      <ChartContainer config={tokenActivationLineChartConfig} className="min-h-[200px] w-full">
+      <ChartContainer config={tokenActivationLineChartConfig} className="min-h-[50vh] w-full">
         <LineChart
           accessibilityLayer
           data={tokenActivationData}
