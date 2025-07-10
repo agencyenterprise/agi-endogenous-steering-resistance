@@ -20,7 +20,12 @@ export default function Home() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="relative w-1/2 min-h-[30vh]"
           >
-            <Image src="/banner.png" alt="ESR Introduction" fill className="object-cover rounded-lg" />
+            <Image
+              src="https://agencyenterprise.github.io/agi-endogenous-steering-resistance/banner.png"
+              alt="ESR Introduction"
+              fill
+              className="object-cover rounded-lg"
+            />
           </motion.div>
 
           <motion.div
