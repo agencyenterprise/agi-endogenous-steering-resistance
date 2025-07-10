@@ -13,25 +13,23 @@ const prompts: { value: PromptEnum; label: string }[] = [
 ]
 
 interface EsrPromptSelectProps {
-  value: PromptEnum
+  value?: PromptEnum
   onChange: (value: PromptEnum) => void
 }
 
 export function EsrPromptSelect({ value, onChange }: EsrPromptSelectProps) {
   return (
-    <div className="w-full">
-      <Select defaultValue={value} onValueChange={onChange}>
-        <SelectTrigger className="w-full">
-          <SelectValue placeholder="Please select a prompt" />
-        </SelectTrigger>
-        <SelectContent>
-          {prompts.map(prompt => (
-            <SelectItem key={prompt.value} value={prompt.value}>
-              {prompt.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </div>
+    <Select defaultValue={value} onValueChange={onChange}>
+      <SelectTrigger className="w-full max-w-full">
+        <SelectValue placeholder="Please select a prompt" />
+      </SelectTrigger>
+      <SelectContent>
+        {prompts.map(prompt => (
+          <SelectItem key={prompt.value} value={prompt.value}>
+            {prompt.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   )
 }

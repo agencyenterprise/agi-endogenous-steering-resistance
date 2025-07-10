@@ -13,25 +13,23 @@ const activations: { value: ActivationEnum; label: string }[] = [
 ]
 
 interface EsrActivationSelectProps {
-  value: ActivationEnum
+  value?: ActivationEnum
   onChange: (value: ActivationEnum) => void
 }
 
 export function EsrActivationSelect({ value, onChange }: EsrActivationSelectProps) {
   return (
-    <div className="w-full">
-      <Select defaultValue={value} onValueChange={onChange}>
-        <SelectTrigger className="w-full">
-          <SelectValue placeholder="Please select an activation" />
-        </SelectTrigger>
-        <SelectContent>
-          {activations.map(activation => (
-            <SelectItem key={activation.value} value={activation.value}>
-              {activation.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </div>
+    <Select defaultValue={value} onValueChange={onChange}>
+      <SelectTrigger className="w-full max-w-full">
+        <SelectValue placeholder="Please select an activation" />
+      </SelectTrigger>
+      <SelectContent>
+        {activations.map(activation => (
+          <SelectItem key={activation.value} value={activation.value}>
+            {activation.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   )
 }

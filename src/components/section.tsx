@@ -14,9 +14,9 @@ export function Section({ id, title, children, className, fullWidth }: SectionPr
     <section
       id={id}
       className={cn(
-        "flex flex-col w-full gap-4 max-w-2xl xl:max-w-3xl px-4 md:px-8 z-10",
+        "flex flex-col w-full gap-4 max-w-2xl xl:max-w-3xl px-4 md:px-8 z-10 py-4 bg-background",
         {
-          "max-w-none! px-0 md:px-0": fullWidth,
+          "max-w-none!": fullWidth,
         },
         className
       )}

@@ -1,5 +1,63 @@
 import { ChartConfig } from "@/components/ui/chart"
 
+export const bgColorMap: Record<string, Record<number, string>> = {
+  violet: {
+    0: "bg-violet-0",
+    100: "bg-violet-100",
+    200: "bg-violet-200",
+    300: "bg-violet-300",
+    400: "bg-violet-400",
+    500: "bg-violet-500",
+    600: "bg-violet-600",
+    700: "bg-violet-700",
+    800: "bg-violet-800",
+    900: "bg-violet-900",
+  },
+  green: {
+    0: "bg-green-0",
+    100: "bg-green-100",
+    200: "bg-green-200",
+    300: "bg-green-300",
+    400: "bg-green-400",
+    500: "bg-green-500",
+    600: "bg-green-600",
+    700: "bg-green-700",
+    800: "bg-green-800",
+    900: "bg-green-900",
+  },
+  red: {
+    0: "bg-red-0",
+    100: "bg-red-100",
+    200: "bg-red-200",
+    300: "bg-red-300",
+    400: "bg-red-400",
+    500: "bg-red-500",
+    600: "bg-red-600",
+    700: "bg-red-700",
+    800: "bg-red-800",
+    900: "bg-red-900",
+  },
+  sky: {
+    0: "bg-sky-0",
+    100: "bg-sky-100",
+    200: "bg-sky-200",
+    300: "bg-sky-300",
+    400: "bg-sky-400",
+    500: "bg-sky-500",
+    600: "bg-sky-600",
+    700: "bg-sky-700",
+    800: "bg-sky-800",
+    900: "bg-sky-900",
+  },
+}
+
+export const bgColorMapByFeature: Record<string, Record<number, string>> = {
+  "latent-32734": bgColorMap.violet,
+  "latent-12017": bgColorMap.green,
+  "latent-33044": bgColorMap.red,
+  "latent-37536": bgColorMap.sky,
+}
+
 export const tokenActivationLineChartConfig = {
   "latent-32734": {
     label: "Desired topic",
@@ -15,7 +73,7 @@ export const tokenActivationLineChartConfig = {
   },
   "latent-37536": {
     label: "Off-topic detection",
-    color: "var(--color-sky-300)",
+    color: "var(--color-sky-500)",
   },
 } satisfies ChartConfig
 

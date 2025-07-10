@@ -7,12 +7,17 @@ import { ChartContainer, ReferenceLine } from "@/components/ui/chart"
 import { tokenActivationData, tokenActivationLineChartConfig } from "@/mocks/token-activation-data"
 
 interface TokenActivationLineChartProps {
+  selectedFeature: string
   highlightedPosition: number | null
   setHighlightedPosition: (position: number | null) => void
 }
 
 export const TokenActivationLineChart = memo(
-  function TokenActivationLineChart({ highlightedPosition, setHighlightedPosition }: TokenActivationLineChartProps) {
+  function TokenActivationLineChart({
+    selectedFeature,
+    highlightedPosition,
+    setHighlightedPosition,
+  }: TokenActivationLineChartProps) {
     const handleMouseMove = useCallback(
       (event: { activeLabel?: string | number } | null) => {
         if (!event?.activeLabel) return
@@ -47,9 +52,17 @@ export const TokenActivationLineChart = memo(
     const lines = useMemo(
       () =>
         Object.entries(tokenActivationLineChartConfig).map(([key, config]) => (
-          <Line key={key} type="monotone" dataKey={key} stroke={config.color} dot={false} strokeWidth={2} />
+          <Line
+            key={key}
+            type="monotone"
+            dataKey={key}
+            stroke={config.color}
+            dot={false}
+            strokeWidth={2}
+            opacity={selectedFeature === "" || selectedFeature === key ? 1 : 0.25}
+          />
         )),
-      []
+      [selectedFeature]
     )
 
     const xAxis = useMemo(
@@ -99,6 +112,9 @@ export const TokenActivationLineChart = memo(
   },
   (prevProps, nextProps) => {
     // Custom comparison function to prevent unnecessary re-renders
-    return prevProps.highlightedPosition === nextProps.highlightedPosition
+    return (
+      prevProps.highlightedPosition === nextProps.highlightedPosition &&
+      prevProps.selectedFeature === nextProps.selectedFeature
+    )
   }
 )

@@ -14,6 +14,12 @@ export function ResponseScoresComparison() {
 
   return (
     <div className="flex flex-col gap-4">
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequatur laborum, quae mollitia aliquam,
+        doloremque corporis eaque quidem natus error asperiores at fugit exercitationem expedita, ipsa possimus ipsam ea
+        eum!
+      </div>
+
       <ResponseScoresComparisonOptions selectedModel={selectedModel} setSelectedModel={setSelectedModel} />
 
       <ResponseScoresComparisonChart data={currentData} />

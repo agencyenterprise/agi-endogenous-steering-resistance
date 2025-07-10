@@ -17,14 +17,6 @@ const contents = [
     title: "Response Scores Comparison",
     href: "#response-scores-comparison",
   },
-  {
-    title: "Feature Heatmap",
-    href: "#feature-heatmap",
-  },
-  {
-    title: "Other App Components Below",
-    href: "#app-components",
-  },
 ]
 
 export function TableOfContents() {
