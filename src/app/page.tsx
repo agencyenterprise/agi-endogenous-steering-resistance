@@ -13,7 +13,7 @@ import { Separator } from "@/components/ui/separator"
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-12 pb-12 bg-gray-200">
+    <div className="flex flex-col gap-12 bg-gray-200">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -89,7 +89,7 @@ export default function Home() {
           </Section>
         </motion.div> */}
 
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -99,18 +99,20 @@ export default function Home() {
           <Section id="token-activation" title="Token Activation" fullWidth>
             <TokenActivation />
           </Section>
-        </motion.div>
+        </motion.div> */}
 
-        {/* <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
+        <motion.div
+          // initial={{ opacity: 0 }}
+          // whileInView={{ opacity: 1 }}
+          // transition={{ duration: 0.8, ease: "easeOut" }}
+          // viewport={{ once: true, amount: 0.3 }}
         >
           <Section id="response-scores-comparison" title="Response Scores Comparison">
             <ResponseScoresComparison />
           </Section>
-        </motion.div> */}
+        </motion.div>
+
+        <div />
       </div>
     </div>
   )

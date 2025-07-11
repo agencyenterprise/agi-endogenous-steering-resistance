@@ -38,7 +38,7 @@ export function ResponseScoresComparisonChart({ data }: ResponseScoresComparison
             style: { textAnchor: "middle", fontSize: "16px" },
           }}
         />
-        <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+        <Tooltip />
         <Scatter data={data} fill="var(--color-chart-2)" />
 
         <ReferenceLine

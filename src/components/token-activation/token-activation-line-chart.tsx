@@ -56,6 +56,7 @@ export const TokenActivationLineChart = memo(
             dot={false}
             strokeWidth={2}
             opacity={selectedFeature === "" || selectedFeature === key ? 1 : 0.25}
+            animationEasing="ease-in-out"
           />
         )),
       [selectedFeature]
@@ -87,7 +88,7 @@ export const TokenActivationLineChart = memo(
             value: "Activation Value",
             position: "insideLeft",
             angle: -90,
-            offset: 10,
+            offset: 20,
             style: { textAnchor: "middle", fontSize: "16px" },
           }}
         />

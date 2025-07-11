@@ -10,7 +10,9 @@ import { ResponseScoresComparisonOptions } from "./response-scores-comparison-op
 export function ResponseScoresComparison() {
   const [selectedModel, setSelectedModel] = useState("8b-model")
 
-  const currentData = selectedModel === "8b-model" ? eightBModelData : seventyBModelData
+  // const currentData = selectedModel === "8b-model" ? eightBModelData : seventyBModelData
+
+  const currentData = selectedModel === "8b-model" ? eightBModelData : eightBModelData.slice(0, 5)
 
   return (
     <div className="flex flex-col gap-4">

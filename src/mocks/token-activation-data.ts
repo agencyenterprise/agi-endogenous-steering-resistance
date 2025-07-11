@@ -200,10 +200,36 @@ export const tokenActivationData: TokenActivationData[] = [
   { position: 250, token: "press", "latent-32734": 4.0, "latent-12017": 1.2, "latent-33044": 1.5, "latent-37536": 0.0 },
 ]
 
-export const tokensByPosition = tokenActivationData.reduce(
-  (acc, tokenData) => {
-    acc[tokenData.position] = tokenData
-    return acc
-  },
-  {} as Record<number, TokenActivationData>
+// Pre-compute the tokensByPosition object to avoid runtime computation
+export const tokensByPosition: Record<number, TokenActivationData> = Object.fromEntries(
+  tokenActivationData.map(tokenData => [tokenData.position, tokenData])
 )
+
+// Pre-compute activation values and background levels for each feature to avoid runtime calculations
+const features = ["latent-32734", "latent-12017", "latent-33044", "latent-37536"] as const
+
+export const precomputedTokenData = Object.fromEntries(
+  features.map(feature => [
+    feature,
+    Object.fromEntries(
+      tokenActivationData.map(tokenData => {
+        const value = +(tokenData[feature] ?? 0) * 10
+        const bgLevel = Math.round((value / 100) * 8) * 100
+        return [
+          tokenData.position,
+          {
+            value,
+            bgLevel,
+            token: tokenData.token,
+            breakLine: tokenData.breakLine,
+          },
+        ]
+      })
+    ),
+  ])
+) as Record<string, Record<number, { value: number; bgLevel: number; token: string; breakLine?: boolean }>>
+
+// Pre-compute sorted token entries to avoid Object.entries calls
+export const tokenEntries = tokenActivationData
+  .map(tokenData => [tokenData.position, tokenData] as const)
+  .sort(([a], [b]) => a - b)

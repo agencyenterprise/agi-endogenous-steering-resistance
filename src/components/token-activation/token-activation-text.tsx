@@ -1,9 +1,9 @@
-import { useCallback, useMemo } from "react"
+import { memo, useCallback, useMemo } from "react"
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
-import { bgColorMapByFeature, tokensByPosition } from "@/mocks/token-activation-data"
+import { bgColorMapByFeature, precomputedTokenData, tokenEntries } from "@/mocks/token-activation-data"
 
 interface TokenActivationTextProps {
   selectedFeature: string
@@ -11,12 +11,17 @@ interface TokenActivationTextProps {
   setHighlightedPosition: (position: number | null) => void
 }
 
-export function TokenActivationText({
+export const TokenActivationText = memo(function TokenActivationText({
   selectedFeature,
   highlightedPosition,
   setHighlightedPosition,
 }: TokenActivationTextProps) {
   const bgColorMap = useMemo(() => bgColorMapByFeature[selectedFeature], [selectedFeature])
+
+  // Get pre-computed data for the selected feature
+  const featureData = useMemo(() => {
+    return precomputedTokenData[selectedFeature] || {}
+  }, [selectedFeature])
 
   const handleMouseEnter = useCallback(
     (position: number) => {
@@ -33,19 +38,18 @@ export function TokenActivationText({
     <Card className="w-full md:w-2/5">
       <CardContent>
         <div className="flex flex-wrap gap-1">
-          {Object.entries(tokensByPosition).map(([position, tokenData]) => {
-            const value = +(tokenData[selectedFeature as keyof typeof tokenData] ?? 0) * 10
-
-            const bgLevel = Math.round((value / 100) * 8) * 100
+          {tokenEntries.map(([position, tokenData]) => {
+            const computedData = featureData[position]
+            const { value = 0, bgLevel = 0 } = computedData || {}
 
             return (
               <Tooltip key={position}>
                 <TooltipTrigger asChild>
                   <span
                     className={cn(bgColorMap?.[bgLevel], {
-                      "bg-blue-500 text-white rounded": highlightedPosition === parseInt(position),
+                      "bg-blue-500 text-white rounded": highlightedPosition === position,
                     })}
-                    onMouseEnter={() => handleMouseEnter(parseInt(position))}
+                    onMouseEnter={() => handleMouseEnter(position)}
                     onMouseLeave={handleMouseLeave}
                   >
                     {tokenData.token}
@@ -62,4 +66,4 @@ export function TokenActivationText({
       </CardContent>
     </Card>
   )
-}
+})
