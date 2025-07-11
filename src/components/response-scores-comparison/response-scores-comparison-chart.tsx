@@ -10,7 +10,7 @@ interface ResponseScoresComparisonChartProps {
 
 export function ResponseScoresComparisonChart({ data }: ResponseScoresComparisonChartProps) {
   return (
-    <ChartContainer config={{}} className="min-h-[50vh] w-full">
+    <ChartContainer config={{}} className="md:min-h-[50vh] w-full">
       <ScatterChart margin={{ bottom: 20, top: 20 }}>
         <CartesianGrid />
         <XAxis

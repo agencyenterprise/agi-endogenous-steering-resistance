@@ -3,6 +3,8 @@ import Image from "next/image"
 
 import { EsrMethods } from "@/components/esr-methods"
 import { NextSectionArrowDown } from "@/components/next-section-arrow-down"
+import { PageMetadata } from "@/components/page-metadata"
+import { PageTitle } from "@/components/page-title"
 import { ResponseScoresComparison } from "@/components/response-scores-comparison"
 import { Section } from "@/components/section"
 // import { TableOfContents } from "@/components/table-of-contents"
@@ -11,50 +13,44 @@ import { Separator } from "@/components/ui/separator"
 
 export default function Home() {
   return (
-    <div className="py-8 md:py-16">
-      <div className="flex flex-col w-full items-center gap-2 px-4">
-        <div className="flex gap-4 max-w-2xl xl:max-w-3xl items-center">
-          <motion.div
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="relative w-1/2 min-h-[30vh]"
-          >
-            <Image
-              src="https://agencyenterprise.github.io/agi-endogenous-steering-resistance/banner.png"
-              alt="ESR Introduction"
-              fill
-              className="object-cover rounded-lg"
-            />
-          </motion.div>
+    <div className="flex flex-col gap-12 pb-12 bg-gray-200">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className="relative w-full min-h-[350px]"
+      >
+        <Image
+          src="https://agencyenterprise.github.io/agi-endogenous-steering-resistance/banner.png"
+          alt="ESR Introduction"
+          fill
+          className="object-cover"
+        />
+      </motion.div>
 
-          <motion.div
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="flex flex-col gap-2 w-1/2"
-          >
-            <h1 className="text-2xl md:text-3xl font-bold w-full text-center">
-              Endogenous resistance to activation steering in language models emerges at scale
-            </h1>
-            <div className="text-sm text-center">
-              LLMs can detect and actively resist unnatural manipulations of their internal representations.
-            </div>
-          </motion.div>
-        </div>
-      </div>
+      <PageTitle
+        title="Endogenous resistance to activation steering in language models emerges at scale"
+        description="LLMs can detect and actively resist unnatural manipulations of their internal representations."
+      />
 
-      <Separator className="my-8 md:my-16" />
+      <Separator className="bg-sky-700" />
 
-      <div className="relative flex justify-center items-center flex-col gap-8 md:gap-16">
+      <PageMetadata
+        authors={["Keenan Pepper", "Stijn Servaes", "Mike Vaiana"]}
+        published="July 10, 2025"
+        doi="10.212433"
+      />
+
+      <div className="relative flex justify-center items-center flex-col gap-12 bg-background">
         {/* <TableOfContents /> */}
 
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+          className="pt-12"
         >
-          <Section id="introduction" title="Introduction">
+          <Section id="abstract" title="Abstract">
             <div>
               We uncover a new phenomenon, Endogenous Steering Resistance (ESR), demonstrating that large language
               models can detect and actively resist unnatural manipulations of their internal representations. Using
@@ -80,9 +76,9 @@ export default function Home() {
               <NextSectionArrowDown nextSectionId="methods" />
             </motion.div>
           </Section>
-        </motion.div>
+        </motion.div> */}
 
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -91,7 +87,7 @@ export default function Home() {
           <Section id="methods" title="Methods">
             <EsrMethods />
           </Section>
-        </motion.div>
+        </motion.div> */}
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -105,7 +101,7 @@ export default function Home() {
           </Section>
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -114,7 +110,7 @@ export default function Home() {
           <Section id="response-scores-comparison" title="Response Scores Comparison">
             <ResponseScoresComparison />
           </Section>
-        </motion.div>
+        </motion.div> */}
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 "use client"
 
 import { memo, useCallback, useMemo } from "react"
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
+import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
 
 import { ChartContainer, ReferenceLine } from "@/components/ui/chart"
 import { tokenActivationData, tokenActivationLineChartConfig } from "@/mocks/token-activation-data"
@@ -19,15 +19,11 @@ export const TokenActivationLineChart = memo(
     setHighlightedPosition,
   }: TokenActivationLineChartProps) {
     const handleMouseMove = useCallback(
-      (event: { activeLabel?: string | number } | null) => {
-        if (!event?.activeLabel) return
-
-        const position = parseInt(String(event.activeLabel))
-        if (isNaN(position)) return
-
-        setHighlightedPosition(position)
+      (event: { activeLabel?: string } | null) => {
+        if (event && event.activeLabel !== undefined) {
+          setHighlightedPosition(Number(event.activeLabel))
+        }
       },
-
       [setHighlightedPosition]
     )
 
@@ -36,7 +32,7 @@ export const TokenActivationLineChart = memo(
     }, [setHighlightedPosition])
 
     const referenceLine = useMemo(() => {
-      if (highlightedPosition === null) return null
+      if (!highlightedPosition) return null
 
       return (
         <ReferenceLine
@@ -84,10 +80,24 @@ export const TokenActivationLineChart = memo(
       []
     )
 
+    const yAxis = useMemo(
+      () => (
+        <YAxis
+          label={{
+            value: "Activation Value",
+            position: "insideLeft",
+            angle: -90,
+            offset: 10,
+            style: { textAnchor: "middle", fontSize: "16px" },
+          }}
+        />
+      ),
+      []
+    )
+
     return (
-      <ChartContainer config={tokenActivationLineChartConfig} className="min-h-[50vh] w-full">
+      <ChartContainer config={tokenActivationLineChartConfig} className="md:min-h-[50vh] w-full">
         <LineChart
-          accessibilityLayer
           data={tokenActivationData}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
@@ -95,17 +105,10 @@ export const TokenActivationLineChart = memo(
         >
           <CartesianGrid vertical={false} />
           {xAxis}
-          <YAxis
-            label={{
-              value: "Activation Value",
-              position: "insideLeft",
-              angle: -90,
-              offset: 10,
-              style: { textAnchor: "middle", fontSize: "16px" },
-            }}
-          />
-          {referenceLine}
+          {yAxis}
+          <Tooltip />
           {lines}
+          {referenceLine}
         </LineChart>
       </ChartContainer>
     )
