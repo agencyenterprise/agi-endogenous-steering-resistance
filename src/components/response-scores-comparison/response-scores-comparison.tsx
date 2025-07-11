@@ -1,18 +1,28 @@
 "use client"
 
-import { useState } from "react"
+import { useMemo, useState } from "react"
 
-import { eightBModelData, seventyBModelData } from "@/mocks/response-scores-comparison-data"
+import { ModelEnum, responseScoresComparisonData } from "@/mocks/response-scores-comparison-data"
 
 import { ResponseScoresComparisonChart } from "./response-scores-comparison-chart"
 import { ResponseScoresComparisonOptions } from "./response-scores-comparison-options"
 
 export function ResponseScoresComparison() {
-  const [selectedModel, setSelectedModel] = useState("8b-model")
+  const [_selectedModel, _setSelectedModel] = useState(ModelEnum.EIGHT_B)
+  const [selectedModel, setSelectedModel] = useState(ModelEnum.EIGHT_B)
+  const [dotsVisible, setDotsVisible] = useState(true)
 
-  // const currentData = selectedModel === "8b-model" ? eightBModelData : seventyBModelData
+  function handleModelChange(model: ModelEnum) {
+    setDotsVisible(false)
+    _setSelectedModel(model)
 
-  const currentData = selectedModel === "8b-model" ? eightBModelData : eightBModelData.slice(0, 5)
+    setTimeout(() => {
+      setSelectedModel(model)
+      setDotsVisible(true)
+    }, 500)
+  }
+
+  const currentData = useMemo(() => responseScoresComparisonData[selectedModel], [selectedModel])
 
   return (
     <div className="flex flex-col gap-4">
@@ -22,9 +32,9 @@ export function ResponseScoresComparison() {
         eum!
       </div>
 
-      <ResponseScoresComparisonOptions selectedModel={selectedModel} setSelectedModel={setSelectedModel} />
+      <ResponseScoresComparisonOptions selectedModel={_selectedModel} setSelectedModel={handleModelChange} />
 
-      <ResponseScoresComparisonChart data={currentData} />
+      <ResponseScoresComparisonChart data={currentData} dotsVisible={dotsVisible} />
     </div>
   )
 }

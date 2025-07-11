@@ -2,10 +2,11 @@
 
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { ModelEnum } from "@/mocks/response-scores-comparison-data"
 
 interface ResponseScoresComparisonOptionsProps {
-  selectedModel: string
-  setSelectedModel: (model: string) => void
+  selectedModel: ModelEnum
+  setSelectedModel: (model: ModelEnum) => void
 }
 
 export function ResponseScoresComparisonOptions({
@@ -15,12 +16,12 @@ export function ResponseScoresComparisonOptions({
   return (
     <RadioGroup value={selectedModel} onValueChange={setSelectedModel} className="flex gap-4">
       <div className="flex items-center gap-2">
-        <RadioGroupItem value="8b-model" id="8b-model" />
-        <Label htmlFor="8b-model">8B Model</Label>
+        <RadioGroupItem value={ModelEnum.EIGHT_B} id={ModelEnum.EIGHT_B} />
+        <Label htmlFor={ModelEnum.EIGHT_B}>8B Model</Label>
       </div>
       <div className="flex items-center gap-2">
-        <RadioGroupItem value="70b-model" id="70b-model" />
-        <Label htmlFor="70b-model">70B Model</Label>
+        <RadioGroupItem value={ModelEnum.SEVENTY_B} id={ModelEnum.SEVENTY_B} />
+        <Label htmlFor={ModelEnum.SEVENTY_B}>70B Model</Label>
       </div>
     </RadioGroup>
   )

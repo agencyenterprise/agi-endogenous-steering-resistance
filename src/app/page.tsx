@@ -44,10 +44,10 @@ export default function Home() {
       <div className="relative flex justify-center items-center flex-col gap-12 bg-background">
         {/* <TableOfContents /> */}
 
-        {/* <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+        <motion.div
+          // initial={{ opacity: 0 }}
+          // animate={{ opacity: 1 }}
+          // transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
           className="pt-12"
         >
           <Section id="abstract" title="Abstract">
@@ -76,36 +76,36 @@ export default function Home() {
               <NextSectionArrowDown nextSectionId="methods" />
             </motion.div>
           </Section>
-        </motion.div> */}
+        </motion.div>
 
-        {/* <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
+        <motion.div
+        // initial={{ opacity: 0 }}
+        // whileInView={{ opacity: 1 }}
+        // transition={{ duration: 0.8, ease: "easeOut" }}
+        // viewport={{ once: true, amount: 0.3 }}
         >
           <Section id="methods" title="Methods">
             <EsrMethods />
           </Section>
-        </motion.div> */}
-
-        {/* <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
-          className="z-10"
-        >
-          <Section id="token-activation" title="Token Activation" fullWidth>
-            <TokenActivation />
-          </Section>
-        </motion.div> */}
+        </motion.div>
 
         <motion.div
           // initial={{ opacity: 0 }}
           // whileInView={{ opacity: 1 }}
           // transition={{ duration: 0.8, ease: "easeOut" }}
           // viewport={{ once: true, amount: 0.3 }}
+          className="z-10"
+        >
+          <Section id="token-activation" title="Token Activation" fullWidth>
+            <TokenActivation />
+          </Section>
+        </motion.div>
+
+        <motion.div
+        // initial={{ opacity: 0 }}
+        // whileInView={{ opacity: 1 }}
+        // transition={{ duration: 0.8, ease: "easeOut" }}
+        // viewport={{ once: true, amount: 0.3 }}
         >
           <Section id="response-scores-comparison" title="Response Scores Comparison">
             <ResponseScoresComparison />

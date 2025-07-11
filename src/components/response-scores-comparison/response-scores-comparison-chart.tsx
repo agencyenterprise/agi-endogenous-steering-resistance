@@ -1,14 +1,33 @@
 "use client"
 
-import { CartesianGrid, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from "recharts"
+import * as motion from "motion/react-client"
+import { CartesianGrid, DotProps, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from "recharts"
 
 import { ChartContainer, ReferenceLine } from "@/components/ui/chart"
 
 interface ResponseScoresComparisonChartProps {
   data: { x: number; y: number }[]
+  dotsVisible: boolean
 }
 
-export function ResponseScoresComparisonChart({ data }: ResponseScoresComparisonChartProps) {
+export function ResponseScoresComparisonChart({ data, dotsVisible }: ResponseScoresComparisonChartProps) {
+  const CustomDot = (props: DotProps) => {
+    const { cx, cy, fill } = props
+
+    return (
+      <motion.circle
+        cx={cx}
+        cy={cy}
+        r={4}
+        fill={fill}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: dotsVisible ? 1 : 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      />
+    )
+  }
+
   return (
     <ChartContainer config={{}} className="md:min-h-[50vh] w-full">
       <ScatterChart margin={{ bottom: 20, top: 20 }}>
@@ -39,7 +58,7 @@ export function ResponseScoresComparisonChart({ data }: ResponseScoresComparison
           }}
         />
         <Tooltip />
-        <Scatter data={data} fill="var(--color-chart-2)" />
+        <Scatter data={data} fill="var(--color-chart-2)" shape={CustomDot} isAnimationActive={false} />
 
         <ReferenceLine
           strokeOpacity={0.5}

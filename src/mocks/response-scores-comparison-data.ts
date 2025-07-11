@@ -1,3 +1,8 @@
+export enum ModelEnum {
+  EIGHT_B = "8b-model",
+  SEVENTY_B = "70b-model",
+}
+
 export const eightBModelData = [
   { x: 10, y: 25, z: 18 },
   { x: 20, y: 24, z: 20 },
@@ -23,3 +28,8 @@ export const seventyBModelData = [
   { x: 90, y: 90, z: 36 },
   { x: 95, y: 98, z: 38 },
 ]
+
+export const responseScoresComparisonData = {
+  [ModelEnum.EIGHT_B]: eightBModelData,
+  [ModelEnum.SEVENTY_B]: seventyBModelData,
+}
