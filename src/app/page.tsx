@@ -8,7 +8,7 @@ import { PageTitle } from "@/components/page-title"
 import { ResponseScoresComparison } from "@/components/response-scores-comparison"
 import { SAEImplementation } from "@/components/sae-implementation"
 import { Section } from "@/components/section"
-// import { TableOfContents } from "@/components/table-of-contents"
+import { TableOfContents } from "@/components/table-of-contents"
 import { TokenActivation } from "@/components/token-activation"
 import { Separator } from "@/components/ui/separator"
 
@@ -51,7 +51,7 @@ export default function Home() {
       />
 
       <div className="relative flex justify-center items-center flex-col gap-12 bg-background">
-        {/* <TableOfContents /> */}
+        <TableOfContents />
 
         <motion.div
           // initial={{ opacity: 0 }}

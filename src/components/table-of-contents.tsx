@@ -1,9 +1,30 @@
 "use client"
 
-const contents = [
+import { Eye, EyeOff } from "lucide-react"
+import { Fragment, useState } from "react"
+
+import { cn } from "@/lib/utils"
+
+interface Content {
+  title: string
+  href: string
+  children?: Content[]
+}
+
+const contents: Content[] = [
   {
-    title: "Introduction",
-    href: "#introduction",
+    title: "Abstract",
+    href: "#abstract",
+    children: [
+      {
+        title: "Testing 1",
+        href: "#testing-1",
+      },
+      {
+        title: "Testing 2",
+        href: "#testing-2",
+      },
+    ],
   },
   {
     title: "Methods",
@@ -20,6 +41,8 @@ const contents = [
 ]
 
 export function TableOfContents() {
+  const [isOpen, setIsOpen] = useState(true)
+
   function handleClick(href: string) {
     const element = document.querySelector(href)
 
@@ -29,21 +52,43 @@ export function TableOfContents() {
   }
 
   return (
-    <div className="flex-1 w-full h-full max-w-2xl lg:absolute lg:top-0 lg:left-0 lg:max-w-[calc((100vw-var(--container-2xl))/2-var(--spacing)*2)] xl:max-w-[calc((100vw-var(--container-3xl))/2-var(--spacing)*2)]!">
-      <div className="bg-background flex flex-col gap-4 flex-1 border-b lg:border-b-0 lg:border-r px-4 md:px-8 pb-8 lg:sticky lg:top-0 lg:ml-auto lg:max-w-64 lg:py-4">
-        <div className="text-lg font-bold">Contents</div>
-
-        <ul className="flex flex-col gap-2">
-          {contents.map(content => (
-            <li
-              className="hover:underline cursor-pointer w-fit text-sm"
-              key={content.href}
-              onClick={() => handleClick(content.href)}
+    <div className="flex-1 w-full h-full max-w-2xl lg:absolute lg:top-4 lg:left-4 lg:max-w-[calc((100vw-var(--container-2xl))/2-var(--spacing)*8)] xl:max-w-[calc((100vw-var(--container-3xl))/2-var(--spacing)*8)]!">
+      <div className="bg-linear-[90deg,purple,green,blue,red,gold] p-px rounded-3xl flex-1 lg:sticky lg:top-4 lg:ml-auto lg:max-w-80">
+        <div className="p-4 md:p-6 rounded-3xl bg-background flex flex-col gap-6">
+          <div className="text-xl font-bold flex justify-between items-center">
+            Table of Contents
+            <div
+              className="cursor-pointer text-blue-900 min-w-12 size-12 flex justify-center items-center border rounded-full border-purple-200"
+              onClick={() => setIsOpen(!isOpen)}
             >
-              {content.title}
-            </li>
-          ))}
-        </ul>
+              {isOpen ? <EyeOff /> : <Eye />}
+            </div>
+          </div>
+
+          <div className={cn("flex flex-col gap-2 text-gray-800", isOpen ? "flex" : "hidden")}>
+            {contents.map(content => (
+              <Fragment key={content.href}>
+                <div
+                  className="hover:underline cursor-pointer w-fit font-semibold"
+                  key={content.href}
+                  onClick={() => handleClick(content.href)}
+                >
+                  {content.title}
+                </div>
+
+                {content.children && (
+                  <div className="flex flex-col gap-2">
+                    {content.children.map(child => (
+                      <div key={child.href} className="hover:underline cursor-pointer w-fit pl-4">
+                        {child.title}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </Fragment>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )

@@ -26,12 +26,13 @@ export function Footer() {
   })
 
   function onSubmit(data: FormSchemaType) {
+    // TODO: Implement newsletter subscription
     console.log(data)
   }
 
   return (
-    <footer className="flex justify-center items-center bg-blue-950">
-      <Section id="footer" className="text-primary-foreground py-8 gap-32 !max-w-5xl">
+    <footer className="flex justify-center items-center bg-radial from-blue-900 from-10% to-blue-950">
+      <Section id="footer" className="text-primary-foreground py-12 gap-32 !max-w-5xl bg-radial-[at_50%_-75%] from-purple-400/50 via-transparent via-70% to-transparent">
         <div className="grid grid-cols-2 gap-32">
           <div className="flex flex-col gap-4">
             <div className="text-2xl font-bold leading-12">AE.STUDIO</div>

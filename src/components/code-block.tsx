@@ -16,11 +16,9 @@ export function CodeBlock({ code, language = "javascript", className }: CodeBloc
       <SyntaxHighlighter
         language={language}
         style={coldarkDark}
-        showLineNumbers={true}
         customStyle={{
           borderRadius: "var(--radius)",
           padding: "calc(var(--spacing) * 4)",
-          fontSize: "var(--text-sm)",
           margin: "0",
         }}
       >
