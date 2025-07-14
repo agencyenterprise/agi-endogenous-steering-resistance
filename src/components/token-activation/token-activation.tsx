@@ -41,14 +41,21 @@ export const TokenActivation = memo(function TokenActivation() {
   )
 
   return (
-    <div className="flex flex-col md:flex-row gap-6 bg-background md:px-4">
-      <div className="w-full md:w-3/5 flex flex-col gap-4">
-        {lineChart}
-
-        {legend}
+    <div className="flex flex-col gap-4">
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequatur laborum, quae mollitia aliquam,
+        doloremque corporis eaque quidem natus error asperiores at fugit exercitationem expedita, ipsa possimus ipsam ea
+        eum!
       </div>
+      <div className="flex flex-col md:flex-row gap-6 bg-background md:px-4">
+        <div className="w-full md:w-3/5 flex flex-col gap-4">
+          {lineChart}
 
-      {textComponent}
+          {legend}
+        </div>
+
+        {textComponent}
+      </div>
     </div>
   )
 })

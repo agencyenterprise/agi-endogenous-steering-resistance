@@ -6,9 +6,10 @@ import { NextSectionArrowDown } from "@/components/next-section-arrow-down"
 import { PageMetadata } from "@/components/page-metadata"
 import { PageTitle } from "@/components/page-title"
 import { ResponseScoresComparison } from "@/components/response-scores-comparison"
+import { SAEImplementation } from "@/components/sae-implementation"
 import { Section } from "@/components/section"
 // import { TableOfContents } from "@/components/table-of-contents"
-import { TokenActivation } from "@/components/token-activation/token-activation"
+import { TokenActivation } from "@/components/token-activation"
 import { Separator } from "@/components/ui/separator"
 
 export default function Home() {
@@ -33,10 +34,18 @@ export default function Home() {
         description="LLMs can detect and actively resist unnatural manipulations of their internal representations."
       />
 
-      <Separator className="bg-sky-700" />
+      <Separator className="bg-gray-400" />
 
       <PageMetadata
-        authors={["Keenan Pepper", "Stijn Servaes", "Mike Vaiana"]}
+        authors={[
+          "Keenan Pepper",
+          "Stijn Servaes",
+          "Murat Cubuktepe",
+          "Judd Rosenblatt",
+          "Diogo S de Lucena",
+          "Michael Vaiana",
+          "Michael S. A. Graziano",
+        ]}
         published="July 10, 2025"
         doi="10.212433"
       />
@@ -98,6 +107,12 @@ export default function Home() {
         >
           <Section id="token-activation" title="Token Activation" fullWidth>
             <TokenActivation />
+          </Section>
+        </motion.div>
+
+        <motion.div>
+          <Section id="sae-implementation" title="Sparse Autoencoder Implementation">
+            <SAEImplementation />
           </Section>
         </motion.div>
 

@@ -1,10 +1,12 @@
+import { Section } from "@/components/section"
+
 export function Header() {
   return (
-    <header className="flex justify-center items-center bg-sky-950">
-      <div className="w-full flex gap-2 items-end max-w-2xl xl:max-w-3xl py-8 text-white px-4 md:px-8">
+    <header className="flex justify-center items-center bg-blue-950">
+      <Section id="header" className="flex-row gap-2 items-end py-8 text-primary-foreground">
         <h1 className="text-4xl font-bold leading-none">AE.STUDIO</h1>
         <div className="text-xl font-extralight leading-none">RESEARCH</div>
-      </div>
+      </Section>
     </header>
   )
 }

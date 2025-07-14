@@ -38,16 +38,16 @@ export const bgColorMap: Record<string, Record<number, string>> = {
     900: "bg-red-900",
   },
   sky: {
-    0: "bg-sky-0",
-    100: "bg-sky-100",
-    200: "bg-sky-200",
-    300: "bg-sky-300",
-    400: "bg-sky-400",
-    500: "bg-sky-500",
-    600: "bg-sky-600",
-    700: "bg-sky-700",
-    800: "bg-sky-800",
-    900: "bg-sky-900",
+    0: "bg-blue-0",
+    100: "bg-blue-100",
+    200: "bg-blue-200",
+    300: "bg-blue-300",
+    400: "bg-blue-400",
+    500: "bg-blue-500",
+    600: "bg-blue-600",
+    700: "bg-blue-700",
+    800: "bg-blue-800",
+    900: "bg-blue-900",
   },
 }
 
@@ -73,7 +73,7 @@ export const tokenActivationLineChartConfig = {
   },
   "latent-37536": {
     label: "Off-topic detection",
-    color: "var(--color-sky-500)",
+    color: "var(--color-blue-500)",
   },
 } satisfies ChartConfig
 
