@@ -15,20 +15,14 @@ const contents: Content[] = [
   {
     title: "Abstract",
     href: "#abstract",
-    children: [
-      {
-        title: "Testing 1",
-        href: "#testing-1",
-      },
-      {
-        title: "Testing 2",
-        href: "#testing-2",
-      },
-    ],
   },
   {
-    title: "Methods",
-    href: "#methods",
+    title: "Model Architecture Diagram",
+    href: "#model-architecture-diagram",
+  },
+  {
+    title: "Sparse Autoencoder Implementation",
+    href: "#sae-implementation",
   },
   {
     title: "Token Activation",
@@ -53,7 +47,7 @@ export function TableOfContents() {
 
   return (
     <div className="flex-1 w-full h-full max-w-2xl lg:absolute lg:top-4 lg:left-4 lg:max-w-[calc((100vw-var(--container-2xl))/2-var(--spacing)*8)] xl:max-w-[calc((100vw-var(--container-3xl))/2-var(--spacing)*8)]!">
-      <div className="bg-linear-[90deg,purple,green,blue,red,gold] p-px rounded-3xl flex-1 lg:sticky lg:top-4 lg:ml-auto lg:max-w-80">
+      <div className="bg-linear-(--gradient-rainbow) p-px rounded-3xl flex-1 lg:sticky lg:top-4 lg:ml-auto lg:max-w-80">
         <div className="p-4 md:p-6 rounded-3xl bg-background flex flex-col gap-6">
           <div className="text-xl font-bold flex justify-between items-center">
             Table of Contents

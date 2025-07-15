@@ -40,6 +40,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --gradient-rainbow: 90deg, var(--color-purple-500), var(--color-teal-500), var(--color-indigo-500), var(--color-pink-500), var(--color-red-500), var(--color-yellow-500);
 }
 
 :root {

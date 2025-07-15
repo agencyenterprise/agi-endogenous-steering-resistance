@@ -2,7 +2,6 @@ import * as motion from "motion/react-client"
 import Image from "next/image"
 
 import { EsrMethods } from "@/components/esr-methods"
-import { NextSectionArrowDown } from "@/components/next-section-arrow-down"
 import { PageMetadata } from "@/components/page-metadata"
 import { PageTitle } from "@/components/page-title"
 import { ResponseScoresComparison } from "@/components/response-scores-comparison"
@@ -11,6 +10,7 @@ import { Section } from "@/components/section"
 import { TableOfContents } from "@/components/table-of-contents"
 import { TokenActivation } from "@/components/token-activation"
 import { Separator } from "@/components/ui/separator"
+import { AnimationDurationEnum, FADE_IN_VIEWPORT } from "@/constants/animation"
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        transition={{ duration: AnimationDurationEnum.SLOW, ease: "easeOut" }}
         className="relative w-full min-h-[350px]"
       >
         <Image
@@ -50,15 +50,10 @@ export default function Home() {
         doi="10.212433"
       />
 
-      <div className="relative flex justify-center items-center flex-col gap-12 bg-background">
+      <div className="relative flex justify-center items-center flex-col gap-20 bg-background">
         <TableOfContents />
 
-        <motion.div
-          // initial={{ opacity: 0 }}
-          // animate={{ opacity: 1 }}
-          // transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
-          className="pt-12"
-        >
+        <motion.div {...FADE_IN_VIEWPORT} className="pt-20">
           <Section id="abstract" title="Abstract">
             <div>
               We uncover a new phenomenon, Endogenous Steering Resistance (ESR), demonstrating that large language
@@ -75,53 +70,28 @@ export default function Home() {
               in which internal mechanisms resist distracting concepts and maintain activation of task-relevant
               representations.
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center"
-            >
-              <NextSectionArrowDown nextSectionId="methods" />
-            </motion.div>
           </Section>
         </motion.div>
 
-        <motion.div
-        // initial={{ opacity: 0 }}
-        // whileInView={{ opacity: 1 }}
-        // transition={{ duration: 0.8, ease: "easeOut" }}
-        // viewport={{ once: true, amount: 0.3 }}
-        >
-          <Section id="methods" title="Methods">
+        <motion.div {...FADE_IN_VIEWPORT}>
+          <Section id="model-architecture-diagram" title="Model Architecture Diagram">
             <EsrMethods />
           </Section>
         </motion.div>
 
-        <motion.div
-          // initial={{ opacity: 0 }}
-          // whileInView={{ opacity: 1 }}
-          // transition={{ duration: 0.8, ease: "easeOut" }}
-          // viewport={{ once: true, amount: 0.3 }}
-          className="z-10"
-        >
-          <Section id="token-activation" title="Token Activation" fullWidth>
-            <TokenActivation />
-          </Section>
-        </motion.div>
-
-        <motion.div>
+        <motion.div {...FADE_IN_VIEWPORT}>
           <Section id="sae-implementation" title="Sparse Autoencoder Implementation">
             <SAEImplementation />
           </Section>
         </motion.div>
 
-        <motion.div
-        // initial={{ opacity: 0 }}
-        // whileInView={{ opacity: 1 }}
-        // transition={{ duration: 0.8, ease: "easeOut" }}
-        // viewport={{ once: true, amount: 0.3 }}
-        >
+        <motion.div {...FADE_IN_VIEWPORT} className="z-10 relative w-full">
+          <Section id="token-activation" fullWidth className="!p-0">
+            <TokenActivation />
+          </Section>
+        </motion.div>
+
+        <motion.div {...FADE_IN_VIEWPORT}>
           <Section id="response-scores-comparison" title="Response Scores Comparison">
             <ResponseScoresComparison />
           </Section>

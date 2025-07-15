@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"
 
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
+import { ReadingProgressBar } from "@/components/reading-progress-bar"
 
 import "./globals.css"
 
@@ -24,6 +25,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
+        <ReadingProgressBar />
+
         <Header />
         {children}
         <Footer />

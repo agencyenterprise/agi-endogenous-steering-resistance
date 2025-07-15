@@ -41,21 +41,23 @@ export function EsrMethods() {
         </div>
       </div>
 
-      <Separator />
+      {data && <Separator />}
 
-      {data && (
-        <motion.div
-          key={activation?.toString() + "-" + prompt?.toString()}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="flex flex-col md:flex-row gap-4 md:gap-16 w-full min-h-64 max-w-3xl"
-        >
-          <EsrMessages title="Prompted self-correction" messages={data.promptedMessages} />
-          <div className="hidden md:block w-px bg-border" />
-          <EsrMessages title="Spontaneous self-correction" messages={data.spontaneousMessages} />
-        </motion.div>
-      )}
+      <motion.div
+        key={activation?.toString() + "-" + prompt?.toString()}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="flex flex-col md:flex-row gap-4 md:gap-16 w-full min-h-48 max-w-3xl"
+      >
+        {data && (
+          <>
+            <EsrMessages title="Prompted self-correction" messages={data.promptedMessages} />
+            <div className="hidden md:block w-px bg-border" />
+            <EsrMessages title="Spontaneous self-correction" messages={data.spontaneousMessages} />
+          </>
+        )}
+      </motion.div>
     </div>
   )
 }
