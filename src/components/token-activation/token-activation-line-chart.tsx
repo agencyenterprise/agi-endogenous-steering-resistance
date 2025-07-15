@@ -97,7 +97,7 @@ export const TokenActivationLineChart = memo(
     )
 
     return (
-      <ChartContainer config={tokenActivationLineChartConfig} className="md:min-h-[50vh] w-full">
+      <ChartContainer config={tokenActivationLineChartConfig} className="h-[calc(100%-72px)] w-full">
         <LineChart
           data={tokenActivationData}
           onMouseMove={handleMouseMove}

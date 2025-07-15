@@ -36,7 +36,7 @@ export const TokenActivationText = memo(function TokenActivationText({
 
   return (
     <Card className="w-full md:w-2/5">
-      <CardContent>
+      <CardContent className="overflow-y-auto">
         <div className="flex flex-wrap gap-1">
           {tokenEntries.map(([position, tokenData]) => {
             const computedData = featureData[position]
