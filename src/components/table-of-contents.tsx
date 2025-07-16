@@ -59,11 +59,11 @@ export function TableOfContents() {
             </div>
           </div>
 
-          <div className={cn("flex flex-col gap-2 text-gray-800", isOpen ? "flex" : "hidden")}>
+          <div className={cn("flex flex-col text-gray-800", isOpen ? "flex" : "hidden")}>
             {contents.map(content => (
               <Fragment key={content.href}>
                 <div
-                  className="hover:underline cursor-pointer w-fit font-semibold"
+                  className="hover:bg-gray-100 cursor-pointer w-full font-semibold p-2 rounded-lg transition-colors duration-500"
                   key={content.href}
                   onClick={() => handleClick(content.href)}
                 >
@@ -73,7 +73,7 @@ export function TableOfContents() {
                 {content.children && (
                   <div className="flex flex-col gap-2">
                     {content.children.map(child => (
-                      <div key={child.href} className="hover:underline cursor-pointer w-fit pl-4">
+                      <div key={child.href} className="pl-4 hover:bg-gray-100 cursor-pointer w-full font-semibold p-2 rounded-lg transition-colors duration-500">
                         {child.title}
                       </div>
                     ))}
