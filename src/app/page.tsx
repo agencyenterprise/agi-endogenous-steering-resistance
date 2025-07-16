@@ -53,7 +53,7 @@ export default function Home() {
       <div className="relative flex justify-center items-center flex-col gap-20 bg-background">
         <TableOfContents />
 
-        <motion.div {...FADE_IN_VIEWPORT} className="pt-20">
+        <motion.div {...FADE_IN_VIEWPORT} className="pt-0 lg:pt-20">
           <Section id="abstract" title="Abstract">
             <div>
               We uncover a new phenomenon, Endogenous Steering Resistance (ESR), demonstrating that large language

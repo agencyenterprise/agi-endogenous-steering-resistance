@@ -44,10 +44,10 @@ export const TokenActivation = memo(function TokenActivation() {
   )
 
   return (
-    <div className="p-10 w-full relative">
+    <div className="p-4 md:p-10 w-full relative">
       <TokenActivationRainbowBackgroundEmbed className="absolute top-0 bottom-0 left-0 right-0 w-full h-full" />
 
-      <div className="flex flex-col gap-4 border rounded-2xl p-8 bg-background/90 relative z-50 max-w-[1700px] mx-auto">
+      <div className="flex flex-col gap-4 border rounded-2xl p-4 md:p-8 bg-background/90 relative z-50 max-w-[1700px] mx-auto">
         <SectionTitle title="Token Activation Chart" />
 
         <div>
@@ -56,7 +56,7 @@ export const TokenActivation = memo(function TokenActivation() {
           possimus ipsam ea eum!
         </div>
 
-        <div className="flex flex-col md:flex-row gap-6 md:px-4 z-20 max-h-[50vh]">
+        <div className="flex flex-col md:flex-row gap-6 md:px-4 z-20 md:max-h-[50vh]">
           <div className="w-full md:w-3/5 flex flex-col gap-4">
             {lineChart}
 

@@ -2,7 +2,7 @@ import { CodeBlock } from "@/components/code-block"
 
 export function SAEImplementation() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 max-w-full">
       <div>
         We implemented sparse autoencoders (SAEs) to extract interpretable features from the model&apos;s residual
         stream. The SAE is trained to minimize reconstruction error while encouraging sparsity, with each latent

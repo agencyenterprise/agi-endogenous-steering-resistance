@@ -20,6 +20,8 @@ export function CodeBlock({ code, language = "javascript", className }: CodeBloc
           borderRadius: "var(--radius)",
           padding: "calc(var(--spacing) * 4)",
           margin: "0",
+          overflow: "auto",
+          maxWidth: "calc(100vw - var(--spacing) * 8)",
         }}
       >
         {code}
