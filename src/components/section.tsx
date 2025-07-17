@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 interface SectionProps {
   id: string
   title?: string
-  children: React.ReactNode
+  children?: React.ReactNode
   className?: string
   fullWidth?: boolean
 }

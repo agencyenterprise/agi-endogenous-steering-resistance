@@ -8,33 +8,49 @@ import { useIsClient, useMediaQuery } from "usehooks-ts"
 import { Section } from "@/components/section"
 import { AnimationDurationEnum } from "@/constants/animation"
 
-const contentItems = [
+interface ContentItem {
+  title: string
+  href: string
+  children?: ContentItem[]
+}
+
+const contentItems: ContentItem[] = [
   {
-    title: "Abstract",
-    href: "#abstract",
+    title: "Introduction",
+    href: "#introduction",
   },
   {
-    title: "Model Architecture Diagram",
-    href: "#model-architecture-diagram",
-  },
-  {
-    title: "Sparse Autoencoder Implementation",
-    href: "#sae-implementation",
+    title: "Methodology",
+    href: "#methodology",
+    children: [
+      {
+        title: "Personas",
+        href: "#personas",
+      },
+      {
+        title: "Sparse Autoencoder Implementation",
+        href: "#sae-implementation",
+      },
+      {
+        title: "SAE Latent Selection",
+        href: "#sae-latent-selection",
+      },
+    ],
   },
   {
     title: "Token Activation",
     href: "#token-activation",
   },
   {
-    title: "Response Scores Comparison",
-    href: "#response-scores-comparison",
+    title: "Main Results",
+    href: "#main-results",
   },
 ]
 
 export function NewTableOfContents() {
   const isClient = useIsClient()
   const isMobile = useMediaQuery("(max-width: 1023px)")
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(isMobile)
 
   function handleClick(href: string) {
     const element = document.querySelector(href)
@@ -49,7 +65,7 @@ export function NewTableOfContents() {
   return (
     <Section
       id="table-of-contents"
-      className="w-full lg:w-80 lg:!p-0 lg:absolute lg:left-4 lg:top-4 lg:h-full lg:max-w-[calc((100vw-var(--container-2xl))/2-var(--spacing)*8)] z-20 pointer-events-none"
+      className="pt-4 w-full lg:w-80 lg:!p-0 lg:absolute lg:left-4 lg:top-4 lg:h-full lg:max-w-[calc((100vw-var(--container-2xl))/2-var(--spacing)*8)] z-20 pointer-events-none"
     >
       <motion.div
         className="flex flex-col border p-4 rounded-2xl shadow-sm min-w-full lg:min-w-14 lg:sticky lg:top-4 lg:left-4 bg-background pointer-events-auto"

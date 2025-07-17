@@ -8,7 +8,6 @@ import { ActivationEnum, PromptEnum, getEsrMethodsData } from "@/mocks/esr-metho
 
 import { EsrActivationSelect } from "./esr-activation-select"
 import { EsrMessages } from "./esr-messages"
-import { EsrPersonas } from "./esr-personas"
 import { EsrPromptSelect } from "./esr-prompt-select"
 
 export function EsrMethods() {
@@ -24,10 +23,6 @@ export function EsrMethods() {
         perferendis sapiente odio libero, dolorem quos adipisci aperiam vero recusandae magni excepturi minus fugit
         nihil? Corporis.
       </div>
-
-      <EsrPersonas />
-
-      <Separator />
 
       <div className="flex flex-col items-center gap-4 w-full max-w-full">
         <div className="w-full flex flex-col items-start gap-2">

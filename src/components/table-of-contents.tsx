@@ -13,12 +13,12 @@ interface Content {
 
 const contents: Content[] = [
   {
-    title: "Abstract",
-    href: "#abstract",
+    title: "Introduction",
+    href: "#introduction",
   },
   {
-    title: "Model Architecture Diagram",
-    href: "#model-architecture-diagram",
+    title: "Methodology",
+    href: "#methodology",
   },
   {
     title: "Sparse Autoencoder Implementation",

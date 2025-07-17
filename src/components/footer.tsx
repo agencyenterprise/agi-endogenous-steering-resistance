@@ -1,8 +1,8 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { SiFacebook, SiInstagram, SiX, SiYoutube } from "@icons-pack/react-simple-icons"
-import { Copyright, SendHorizonal } from "lucide-react"
+import { SiInstagram, SiX } from "@icons-pack/react-simple-icons"
+import { Copyright, Brain, SendHorizonal } from "lucide-react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -40,24 +40,21 @@ export function Footer() {
           <div className="flex flex-col gap-4">
             <div className="text-2xl font-bold leading-12">AE.STUDIO</div>
             <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viverra nunc ante velit vitae. Est tellus vitae,
-              nullam lobortis enim.
+              Solving AI alignment is a science R&D problem. We don&apos;t know how to solve it yet. That doesn&apos;t
+              mean it&apos;s not solvable – just neglected. We&apos;re not asking for permission. We&apos;re resolving
+              it.
             </div>
             <div className="flex items-center gap-6 mt-8 h-6">
-              <Link href="https://www.facebook.com/ae.studio.ai" target="_blank" rel="noopener noreferrer">
-                <SiFacebook />
+              <Link href="https://ai-alignment.ae.studio/" target="_blank" rel="noopener noreferrer">
+                <Brain />
               </Link>
               <div className="w-px h-full bg-primary-foreground" />
-              <Link href="https://www.instagram.com/ae.studio.ai" target="_blank" rel="noopener noreferrer">
-                <SiInstagram />
-              </Link>
-              <div className="w-px h-full bg-primary-foreground" />
-              <Link href="https://x.com/ae_studio_ai" target="_blank" rel="noopener noreferrer">
+              <Link href="https://x.com/AEStudioLA" target="_blank" rel="noopener noreferrer">
                 <SiX />
               </Link>
               <div className="w-px h-full bg-primary-foreground" />
-              <Link href="https://www.youtube.com/@ae.studio.ai" target="_blank" rel="noopener noreferrer">
-                <SiYoutube />
+              <Link href="https://www.instagram.com/aestudiola/" target="_blank" rel="noopener noreferrer">
+                <SiInstagram />
               </Link>
             </div>
           </div>
@@ -96,8 +93,12 @@ export function Footer() {
         </div>
 
         <div className="flex items-center gap-2 py-6 border-t">
-          <Copyright />
-          Copyright {new Date().getFullYear()} AE.STUDIO. All Rights Reserved.
+          <Copyright size={16} />
+          {new Date().getFullYear()}{" "}
+          <Link href="https://ae.studio/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+            AE Studio.
+          </Link>
+          All rights reserved.
         </div>
       </Section>
     </footer>

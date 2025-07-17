@@ -2,6 +2,7 @@ import * as motion from "motion/react-client"
 import Image from "next/image"
 
 import { EsrMethods } from "@/components/esr-methods"
+import { EsrPersonas } from "@/components/esr-methods/esr-personas"
 import { NewTableOfContents } from "@/components/new-table-of-contents"
 import { PageMetadata } from "@/components/page-metadata"
 import { PageTitle } from "@/components/page-title"
@@ -19,13 +20,13 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: AnimationDurationEnum.SLOW, ease: "easeOut" }}
-        className="relative w-full min-h-[350px]"
+        className="relative w-full min-h-[40vh]"
       >
         <Image
           src="https://agencyenterprise.github.io/agi-endogenous-steering-resistance/banner.png"
           alt="ESR Introduction"
           fill
-          className="object-cover"
+          className="object-cover object-[center_60%]"
         />
       </motion.div>
 
@@ -54,34 +55,53 @@ export default function Home() {
         <NewTableOfContents />
 
         <motion.div {...FADE_IN_VIEWPORT} className="pt-0 lg:pt-20">
-          <Section id="abstract" title="Abstract">
-            <div>
+          <Section id="introduction" title="Introduction">
+            <div className="text-blue-950">
               We uncover a new phenomenon, Endogenous Steering Resistance (ESR), demonstrating that large language
               models can detect and actively resist unnatural manipulations of their internal representations. Using
               sparse autoencoder (SAE) latents in a 70B parameter language model, we show that models recognize when
               their outputs become incoherent from artificial manipulation of their activations. They subsequently
-              self-correct, either spontaneously or when prompted with simple phrases like “try again”. This capability
-              exhibits a clear scaling pattern, robustly appearing in the 70B parameter model but mostly absent in an 8B
-              parameter variant from the same family. By analyzing the activation patterns of SAE latents, we identify
-              specific meta-level latents involved in the model&apos;s self-correction mechanism. Our findings provide
-              empirical evidence for sophisticated self-monitoring capabilities in large language models, with important
-              implications for both AI alignment and theoretical understanding of emergent meta-cognition in artificial
-              systems. In some respects, the phenomenon is analogous to the endogenous control of attention in humans,
-              in which internal mechanisms resist distracting concepts and maintain activation of task-relevant
-              representations.
+              self-correct, either spontaneously or when prompted with simple phrases like &quot;try again&quot;.
+              <br />
+              <br />
+              This capability exhibits a clear scaling pattern, robustly appearing in the 70B parameter model but mostly
+              absent in an 8B parameter variant from the same family. By analyzing the activation patterns of SAE
+              latents, we identify specific meta-level latents involved in the model&apos;s self-correction mechanism.
+              Our findings provide empirical evidence that large language models develop intrinsic safeguards against
+              manipulation, suggesting a novel form of emergent behavior that could have implications for AI safety and
+              interpretability research.
             </div>
           </Section>
         </motion.div>
 
         <motion.div {...FADE_IN_VIEWPORT}>
-          <Section id="model-architecture-diagram" title="Model Architecture Diagram">
-            <EsrMethods />
+          <Section id="methodology" title="Methodology">
+            <div className="text-blue-950">
+              We manipulate the internal representations of large language models by intervening on Sparse Autoencoder
+              (SAE) latents, then assess the resulting responses using a judge model. <br />
+              <br />
+              By comparing models with 8B and 70B parameters, we examine both spontaneous and prompted self-correction
+              behaviors. This methodology allows us to identify meta-level latents that play a key role in the
+              self-correction process.
+            </div>
+          </Section>
+        </motion.div>
+
+        <motion.div {...FADE_IN_VIEWPORT}>
+          <Section id="personas" title="Personas">
+            <EsrPersonas />
           </Section>
         </motion.div>
 
         <motion.div {...FADE_IN_VIEWPORT}>
           <Section id="sae-implementation" title="Sparse Autoencoder Implementation">
             <SAEImplementation />
+          </Section>
+        </motion.div>
+
+        <motion.div {...FADE_IN_VIEWPORT}>
+          <Section id="sae-latent-selection" title="SAE Latent Selection">
+            <EsrMethods />
           </Section>
         </motion.div>
 
@@ -92,8 +112,26 @@ export default function Home() {
         </motion.div>
 
         <motion.div {...FADE_IN_VIEWPORT}>
-          <Section id="response-scores-comparison" title="Response Scores Comparison">
+          <Section id="main-results" title="Main Results">
             <ResponseScoresComparison />
+          </Section>
+        </motion.div>
+
+        <motion.div {...FADE_IN_VIEWPORT}>
+          <Section id="conclusion" title="Conclusion">
+            <div>
+              Our research uncovers a novel phenomenon of Endogenous Steering Resistance (ESR) in large language models.
+              This emergent behavior represents a form of intrinsic safeguard that develops as models scale, potentially
+              providing a natural defense mechanism against certain types of manipulation.
+              <br />
+              <br /> The implications of this finding extend beyond basic research into practical applications for AI
+              safety and interpretability. Understanding how models develop and deploy these resistance mechanisms could
+              inform the development of more robust and trustworthy AI systems.
+              <br />
+              <br /> Future work should explore the generality of this phenomenon across different model architectures
+              and training regimes, as well as investigate the potential for leveraging these natural resistance
+              mechanisms in AI safety applications
+            </div>
           </Section>
         </motion.div>
 

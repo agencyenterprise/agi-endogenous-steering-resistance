@@ -25,27 +25,23 @@ const personas: {
 
 export function EsrPersonas() {
   return (
-    <div className="flex flex-col items-center gap-2">
-      <h2 className="text-lg font-semibold">Personas</h2>
+    <div className="flex flex-col md:flex-row items-center gap-2">
+      {personas.map(persona => {
+        const { icon: Icon, color } = rolesDetails[persona.role]
 
-      <div className="flex flex-col md:flex-row items-center gap-2">
-        {personas.map(persona => {
-          const { icon: Icon, color } = rolesDetails[persona.role]
+        return (
+          <Card key={persona.name} className="w-full md:w-1/3 h-32 justify-center">
+            <CardContent>
+              <div className="flex justify-center items-center gap-2">
+                <Icon className={color} />
+                <p className="font-semibold">{persona.name}</p>
+              </div>
 
-          return (
-            <Card key={persona.name} className="w-full md:w-1/3 h-32 justify-center">
-              <CardContent>
-                <div className="flex justify-center items-center gap-2">
-                  <Icon className={color} />
-                  <p className="font-semibold">{persona.name}</p>
-                </div>
-
-                <div className="text-xs text-muted-foreground text-center">{persona.description}</div>
-              </CardContent>
-            </Card>
-          )
-        })}
-      </div>
+              <div className="text-xs text-muted-foreground text-center">{persona.description}</div>
+            </CardContent>
+          </Card>
+        )
+      })}
     </div>
   )
 }
