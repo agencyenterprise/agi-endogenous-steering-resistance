@@ -73,7 +73,10 @@ export function TableOfContents() {
                 {content.children && (
                   <div className="flex flex-col gap-2">
                     {content.children.map(child => (
-                      <div key={child.href} className="pl-4 hover:bg-gray-100 cursor-pointer w-full font-semibold p-2 rounded-lg transition-colors duration-500">
+                      <div
+                        key={child.href}
+                        className="pl-4 hover:bg-gray-100 cursor-pointer w-full font-semibold p-2 rounded-lg transition-colors duration-500"
+                      >
                         {child.title}
                       </div>
                     ))}

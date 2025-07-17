@@ -34,7 +34,7 @@ const contentItems = [
 export function NewTableOfContents() {
   const isClient = useIsClient()
   const isMobile = useMediaQuery("(max-width: 1023px)")
-  const [isOpen, setIsOpen] = useState(isMobile)
+  const [isOpen, setIsOpen] = useState(true)
 
   function handleClick(href: string) {
     const element = document.querySelector(href)
@@ -47,25 +47,30 @@ export function NewTableOfContents() {
   if (!isClient) return null
 
   return (
-    <Section id="table-of-contents" className="w-full lg:w-80 lg:!p-0 lg:absolute lg:left-4 lg:top-4 lg:h-full z-50">
+    <Section
+      id="table-of-contents"
+      className="w-full lg:w-80 lg:!p-0 lg:absolute lg:left-4 lg:top-4 lg:h-full lg:max-w-[calc((100vw-var(--container-2xl))/2-var(--spacing)*8)] z-20 pointer-events-none"
+    >
       <motion.div
-        className="flex flex-col border p-4 rrounded-2xl shadow-sm min-w-full lg:min-w-14 lg:sticky lg:top-4 lg:left-4 bg-background"
+        className="flex flex-col border p-4 rounded-2xl shadow-sm min-w-full lg:min-w-14 lg:sticky lg:top-4 lg:left-4 bg-background pointer-events-auto"
         animate={
           isMobile
             ? undefined
             : {
                 width: isOpen ? "256px" : "56px",
                 maxWidth: isOpen ? "256px" : "56px",
-                borderRadius: isOpen ? "16px" : "9999px",
+                borderRadius: isOpen ? "var(--radius-2xl)" : "9999px",
               }
         }
         transition={{
-          duration: AnimationDurationEnum.FAST,
+          width: { duration: AnimationDurationEnum.FAST },
+          maxWidth: { duration: AnimationDurationEnum.FAST },
+          borderRadius: { duration: 0 },
         }}
         onMouseLeave={isMobile ? undefined : () => setIsOpen(false)}
       >
         <div className="flex items-center gap-2 h-6 min-w-6">
-          <div className="size-6">
+          <div className="flex items-center justify-center size-6">
             <BookOpenText className="cursor-pointer" onMouseEnter={() => setIsOpen(true)} />
           </div>
 
