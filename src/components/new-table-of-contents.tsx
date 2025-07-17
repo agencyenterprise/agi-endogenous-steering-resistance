@@ -2,7 +2,7 @@
 
 import { BookOpenText } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useIsClient, useMediaQuery } from "usehooks-ts"
 
 import { Section } from "@/components/section"
@@ -48,10 +48,16 @@ const contentItems: ContentItem[] = [
   },
 ]
 
+const sectionIds = contentItems.flatMap(content => [
+  content.href.substring(1), // Remove the # from href
+  ...(content.children?.map(child => child.href.substring(1)) || []),
+])
+
 export function NewTableOfContents() {
   const isClient = useIsClient()
   const isMobile = useMediaQuery("(max-width: 1023px)")
   const [isOpen, setIsOpen] = useState(isMobile)
+  const [activeSection, setActiveSection] = useState("")
 
   function handleClick(href: string) {
     const element = document.querySelector(href)
@@ -60,6 +66,53 @@ export function NewTableOfContents() {
       element.scrollIntoView({ behavior: "smooth" })
     }
   }
+
+  useEffect(() => {
+    // Cache DOM elements to avoid repeated queries
+    const sectionElements = sectionIds
+      .map(id => document.getElementById(id))
+      .filter((element): element is HTMLElement => element !== null)
+
+    let ticking = false
+
+    const updateActiveSection = () => {
+      // Find the topmost visible section using cached elements
+      const visibleSections = sectionElements.filter(element => {
+        const rect = element.getBoundingClientRect()
+        return rect.top < window.innerHeight && rect.bottom > 0
+      })
+
+      if (visibleSections.length > 0) {
+        // Find the section closest to the top of the viewport
+        const topSection = visibleSections.reduce((closest, current) => {
+          const closestDistance = Math.abs(closest.getBoundingClientRect().top)
+          const currentDistance = Math.abs(current.getBoundingClientRect().top)
+          return currentDistance < closestDistance ? current : closest
+        })
+
+        setActiveSection(`#${topSection.id}`)
+      }
+
+      ticking = false
+    }
+
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateActiveSection)
+        ticking = true
+      }
+    }
+
+    // Initial call
+    updateActiveSection()
+
+    // Add throttled scroll event listener
+    window.addEventListener("scroll", onScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+    }
+  }, [])
 
   if (!isClient) return null
 
@@ -125,6 +178,7 @@ export function NewTableOfContents() {
                   key={item.href}
                   item={item}
                   isMobile={isMobile}
+                  activeSection={activeSection}
                   handleClick={handleClick}
                   className="font-semibold"
                 >
@@ -133,6 +187,7 @@ export function NewTableOfContents() {
                       key={child.href}
                       item={child}
                       isMobile={isMobile}
+                      activeSection={activeSection}
                       handleClick={handleClick}
                       className="pl-4"
                     />
@@ -150,18 +205,20 @@ export function NewTableOfContents() {
 interface ContentItemProps {
   item: ContentItem
   isMobile: boolean
+  activeSection: string
   handleClick: (href: string) => void
   className?: string
   children?: React.ReactNode
 }
 
-function ContentItem({ item, isMobile, handleClick, className, children }: ContentItemProps) {
+function ContentItem({ item, isMobile, activeSection, handleClick, className, children }: ContentItemProps) {
   return (
     <>
       <motion.div
         key={item.href}
         className={cn(
-          "text-sm w-56 rounded-lg p-2 hover:bg-gray-100 cursor-pointer transition-colors duration-100",
+          "text-sm w-56 rounded-lg p-2 hover:bg-gray-100 cursor-pointer transition-colors duration-100 text-blue-950",
+          activeSection === item.href && "bg-gray-200",
           className
         )}
         initial={isMobile ? undefined : { opacity: 0, fontSize: 0 }}

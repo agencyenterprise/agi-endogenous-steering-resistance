@@ -39,7 +39,7 @@ export default function Home() {
         doi="10.212433"
       />
 
-      <div className="relative flex justify-center items-center flex-col gap-20 bg-background">
+      <div id="main-content" className="relative flex justify-center items-center flex-col gap-20 bg-background">
         <NewTableOfContents />
 
         <motion.div {...FADE_IN_VIEWPORT} className="pt-0 lg:pt-20">
