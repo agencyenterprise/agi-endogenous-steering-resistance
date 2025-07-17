@@ -212,20 +212,31 @@ interface ContentItemProps {
 }
 
 function ContentItem({ item, isMobile, activeSection, handleClick, className, children }: ContentItemProps) {
+  const isActive = activeSection === item.href
+
   return (
     <>
       <motion.div
         key={item.href}
-        className={cn(
-          "text-sm w-56 rounded-lg p-2 hover:bg-gray-100 cursor-pointer transition-colors duration-100 text-blue-950",
-          activeSection === item.href && "bg-gray-200",
-          className
-        )}
-        initial={isMobile ? undefined : { opacity: 0, fontSize: 0 }}
-        animate={isMobile ? undefined : { opacity: 1, fontSize: "var(--text-sm)" }}
-        exit={{ opacity: 0, fontSize: 0 }}
+        className={cn("text-sm w-56 rounded-lg p-2 cursor-pointer text-blue-950", className)}
+        initial={isMobile ? undefined : { opacity: 0, fontSize: 0, background: "transparent" }}
+        animate={
+          isMobile
+            ? undefined
+            : {
+                opacity: 1,
+                fontSize: "var(--text-sm)",
+                background: isActive ? "var(--color-red-200)" : "transparent",
+              }
+        }
+        exit={{ opacity: 0, fontSize: 0, background: "transparent" }}
         transition={{
           duration: AnimationDurationEnum.FAST,
+          background: { delay: 0.4 },
+        }}
+        whileHover={{
+          backgroundColor: "var(--color-gray-100)",
+          transition: { backgroundColor: { duration: 0.2 } },
         }}
         onClick={() => handleClick(item.href)}
       >
