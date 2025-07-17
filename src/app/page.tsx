@@ -1,9 +1,9 @@
 import * as motion from "motion/react-client"
-import Image from "next/image"
 
 import { EsrMethods } from "@/components/esr-methods"
 import { EsrPersonas } from "@/components/esr-methods/esr-personas"
 import { NewTableOfContents } from "@/components/new-table-of-contents"
+import { PageBanner } from "@/components/page-banner"
 import { PageMetadata } from "@/components/page-metadata"
 import { PageTitle } from "@/components/page-title"
 import { ResponseScoresComparison } from "@/components/response-scores-comparison"
@@ -11,24 +11,12 @@ import { SAEImplementation } from "@/components/sae-implementation"
 import { Section } from "@/components/section"
 import { TokenActivation } from "@/components/token-activation"
 import { Separator } from "@/components/ui/separator"
-import { AnimationDurationEnum, FADE_IN_VIEWPORT } from "@/constants/animation"
+import { FADE_IN_VIEWPORT } from "@/constants/animation"
 
 export default function Home() {
   return (
     <div className="flex flex-col gap-12 bg-gray-200">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: AnimationDurationEnum.SLOW, ease: "easeOut" }}
-        className="relative w-full min-h-[40vh]"
-      >
-        <Image
-          src="https://agencyenterprise.github.io/agi-endogenous-steering-resistance/banner.png"
-          alt="ESR Introduction"
-          fill
-          className="object-cover object-[center_60%]"
-        />
-      </motion.div>
+      <PageBanner />
 
       <PageTitle
         title="Endogenous resistance to activation steering in language models emerges at scale"

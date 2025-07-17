@@ -7,6 +7,7 @@ import { useIsClient, useMediaQuery } from "usehooks-ts"
 
 import { Section } from "@/components/section"
 import { AnimationDurationEnum } from "@/constants/animation"
+import { cn } from "@/lib/utils"
 
 interface ContentItem {
   title: string
@@ -28,7 +29,7 @@ const contentItems: ContentItem[] = [
         href: "#personas",
       },
       {
-        title: "Sparse Autoencoder Implementation",
+        title: "SAE Implementation",
         href: "#sae-implementation",
       },
       {
@@ -68,7 +69,7 @@ export function NewTableOfContents() {
       className="pt-4 w-full lg:w-80 lg:!p-0 lg:absolute lg:left-4 lg:top-4 lg:h-full lg:max-w-[calc((100vw-var(--container-2xl))/2-var(--spacing)*8)] z-20 pointer-events-none"
     >
       <motion.div
-        className="flex flex-col border p-4 rounded-2xl shadow-sm min-w-full lg:min-w-14 lg:sticky lg:top-4 lg:left-4 bg-background pointer-events-auto"
+        className="flex flex-col border p-4 rounded-full shadow-sm min-w-full lg:min-w-14 lg:sticky lg:top-4 lg:left-4 bg-background pointer-events-auto"
         animate={
           isMobile
             ? undefined
@@ -81,7 +82,7 @@ export function NewTableOfContents() {
         transition={{
           width: { duration: AnimationDurationEnum.FAST },
           maxWidth: { duration: AnimationDurationEnum.FAST },
-          borderRadius: { duration: 0 },
+          borderRadius: isOpen ? { duration: 0 } : { delay: 0.3 },
         }}
         onMouseLeave={isMobile ? undefined : () => setIsOpen(false)}
       >
@@ -94,9 +95,9 @@ export function NewTableOfContents() {
             {isOpen && (
               <motion.div
                 className="flex items-center text-lg font-bold h-6 max-h-6 overflow-hidden"
-                initial={isMobile ? undefined : { opacity: 0, x: -10, fontSize: 0 }}
-                animate={isMobile ? undefined : { opacity: 1, x: 0, fontSize: "1rem" }}
-                exit={{ opacity: 0, x: -10, fontSize: 0 }}
+                initial={isMobile ? undefined : { opacity: 0, x: -10, fontSize: 0, filter: "blur(10px)" }}
+                animate={isMobile ? undefined : { opacity: 1, x: 0, fontSize: "1rem", filter: "blur(0px)" }}
+                exit={{ opacity: 0, x: -10, fontSize: 0, filter: "blur(10px)" }}
                 transition={{
                   duration: AnimationDurationEnum.FAST,
                 }}
@@ -111,33 +112,69 @@ export function NewTableOfContents() {
           {isOpen && (
             <motion.div
               className="flex flex-col items-start"
-              initial={isMobile ? undefined : { opacity: 0, height: 0 }}
-              animate={isMobile ? undefined : { opacity: 1, height: "220px" }}
-              exit={{ opacity: 0, height: 0 }}
+              initial={isMobile ? undefined : { opacity: 0, height: 0, filter: "blur(10px)" }}
+              animate={isMobile ? undefined : { opacity: 1, height: "280px", filter: "blur(0px)" }}
+              exit={{ opacity: 0, height: 0, filter: "blur(10px)" }}
               transition={{
                 duration: AnimationDurationEnum.FAST,
               }}
             >
               <div className="pt-4" />
               {contentItems.map(item => (
-                <motion.div
+                <ContentItem
                   key={item.href}
-                  className="text-sm w-56 rounded-lg p-2 hover:bg-gray-100 cursor-pointer transition-colors duration-100"
-                  initial={isMobile ? undefined : { opacity: 0, fontSize: 0 }}
-                  animate={isMobile ? undefined : { opacity: 1, fontSize: "var(--text-sm)" }}
-                  exit={{ opacity: 0, fontSize: 0 }}
-                  transition={{
-                    duration: AnimationDurationEnum.FAST,
-                  }}
-                  onClick={() => handleClick(item.href)}
+                  item={item}
+                  isMobile={isMobile}
+                  handleClick={handleClick}
+                  className="font-semibold"
                 >
-                  {item.title}
-                </motion.div>
+                  {item.children?.map(child => (
+                    <ContentItem
+                      key={child.href}
+                      item={child}
+                      isMobile={isMobile}
+                      handleClick={handleClick}
+                      className="pl-4"
+                    />
+                  ))}
+                </ContentItem>
               ))}
             </motion.div>
           )}
         </AnimatePresence>
       </motion.div>
     </Section>
+  )
+}
+
+interface ContentItemProps {
+  item: ContentItem
+  isMobile: boolean
+  handleClick: (href: string) => void
+  className?: string
+  children?: React.ReactNode
+}
+
+function ContentItem({ item, isMobile, handleClick, className, children }: ContentItemProps) {
+  return (
+    <>
+      <motion.div
+        key={item.href}
+        className={cn(
+          "text-sm w-56 rounded-lg p-2 hover:bg-gray-100 cursor-pointer transition-colors duration-100",
+          className
+        )}
+        initial={isMobile ? undefined : { opacity: 0, fontSize: 0 }}
+        animate={isMobile ? undefined : { opacity: 1, fontSize: "var(--text-sm)" }}
+        exit={{ opacity: 0, fontSize: 0 }}
+        transition={{
+          duration: AnimationDurationEnum.FAST,
+        }}
+        onClick={() => handleClick(item.href)}
+      >
+        {item.title}
+      </motion.div>
+      {children}
+    </>
   )
 }
