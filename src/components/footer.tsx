@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { SiInstagram, SiX } from "@icons-pack/react-simple-icons"
-import { Copyright, Brain, SendHorizonal } from "lucide-react"
+import { Brain, Copyright, SendHorizonal } from "lucide-react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { z } from "zod"

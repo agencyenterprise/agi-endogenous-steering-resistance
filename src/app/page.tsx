@@ -119,7 +119,7 @@ export default function Home() {
 
         <motion.div {...FADE_IN_VIEWPORT}>
           <Section id="conclusion" title="Conclusion">
-            <div>
+            <div className="text-blue-950">
               Our research uncovers a novel phenomenon of Endogenous Steering Resistance (ESR) in large language models.
               This emergent behavior represents a form of intrinsic safeguard that develops as models scale, potentially
               providing a natural defense mechanism against certain types of manipulation.

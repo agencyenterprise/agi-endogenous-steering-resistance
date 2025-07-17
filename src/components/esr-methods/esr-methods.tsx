@@ -18,7 +18,7 @@ export function EsrMethods() {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div>
+      <div className="text-blue-950">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore mollitia iste minima consequuntur eum
         perferendis sapiente odio libero, dolorem quos adipisci aperiam vero recusandae magni excepturi minus fugit
         nihil? Corporis.
@@ -26,12 +26,12 @@ export function EsrMethods() {
 
       <div className="flex flex-col items-center gap-4 w-full max-w-full">
         <div className="w-full flex flex-col items-start gap-2">
-          <h2 className="text-lg font-semibold">Activation:</h2>
+          <h2 className="text-lg font-semibold text-blue-950">Activation:</h2>
           <EsrActivationSelect value={activation} onChange={setActivation} />
         </div>
 
         <div className="w-full flex flex-col items-start gap-2">
-          <h2 className="text-lg font-semibold">How-to Prompts:</h2>
+          <h2 className="text-lg font-semibold text-blue-950">How-to Prompts:</h2>
           <EsrPromptSelect value={prompt} onChange={setPrompt} />
         </div>
       </div>
