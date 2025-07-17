@@ -2,12 +2,12 @@ import * as motion from "motion/react-client"
 import Image from "next/image"
 
 import { EsrMethods } from "@/components/esr-methods"
+import { NewTableOfContents } from "@/components/new-table-of-contents"
 import { PageMetadata } from "@/components/page-metadata"
 import { PageTitle } from "@/components/page-title"
 import { ResponseScoresComparison } from "@/components/response-scores-comparison"
 import { SAEImplementation } from "@/components/sae-implementation"
 import { Section } from "@/components/section"
-import { TableOfContents } from "@/components/table-of-contents"
 import { TokenActivation } from "@/components/token-activation"
 import { Separator } from "@/components/ui/separator"
 import { AnimationDurationEnum, FADE_IN_VIEWPORT } from "@/constants/animation"
@@ -51,7 +51,7 @@ export default function Home() {
       />
 
       <div className="relative flex justify-center items-center flex-col gap-20 bg-background">
-        <TableOfContents />
+        <NewTableOfContents />
 
         <motion.div {...FADE_IN_VIEWPORT} className="pt-0 lg:pt-20">
           <Section id="abstract" title="Abstract">
