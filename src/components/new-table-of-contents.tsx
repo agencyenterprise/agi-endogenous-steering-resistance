@@ -178,6 +178,7 @@ export function NewTableOfContents() {
                   key={item.href}
                   item={item}
                   isMobile={isMobile}
+                  isOpen={isOpen}
                   activeSection={activeSection}
                   handleClick={handleClick}
                   className="font-semibold"
@@ -187,6 +188,7 @@ export function NewTableOfContents() {
                       key={child.href}
                       item={child}
                       isMobile={isMobile}
+                      isOpen={isOpen}
                       activeSection={activeSection}
                       handleClick={handleClick}
                       className="pl-4"
@@ -203,6 +205,7 @@ export function NewTableOfContents() {
 }
 
 interface ContentItemProps {
+  isOpen: boolean
   item: ContentItem
   isMobile: boolean
   activeSection: string
@@ -211,7 +214,7 @@ interface ContentItemProps {
   children?: React.ReactNode
 }
 
-function ContentItem({ item, isMobile, activeSection, handleClick, className, children }: ContentItemProps) {
+function ContentItem({ item, isMobile, isOpen, activeSection, handleClick, className, children }: ContentItemProps) {
   const isActive = activeSection === item.href
 
   return (
@@ -219,24 +222,33 @@ function ContentItem({ item, isMobile, activeSection, handleClick, className, ch
       <motion.div
         key={item.href}
         className={cn("text-sm w-56 rounded-lg p-2 cursor-pointer text-blue-950", className)}
-        initial={isMobile ? undefined : { opacity: 0, fontSize: 0, background: "transparent" }}
+        initial={isMobile ? undefined : { opacity: 0, fontSize: 0, backgroundColor: "#ffffff" }}
         animate={
           isMobile
             ? undefined
             : {
                 opacity: 1,
                 fontSize: "var(--text-sm)",
-                background: isActive ? "var(--color-red-200)" : "transparent",
+                backgroundColor: isActive ? "#e5e7eb" : "#ffffff",
               }
         }
-        exit={{ opacity: 0, fontSize: 0, background: "transparent" }}
+        exit={{ opacity: 0, fontSize: 0, backgroundColor: "#ffffff" }}
+        whileHover={{
+          boxShadow: "inset 0 0 0 100px #f3f4f6",
+          transition: {
+            boxShadow: {
+              duration: AnimationDurationEnum.FAST,
+              delay: 0,
+              ease: "easeInOut",
+              type: "spring",
+            },
+          },
+        }}
         transition={{
           duration: AnimationDurationEnum.FAST,
-          background: { delay: 0.4 },
-        }}
-        whileHover={{
-          backgroundColor: "var(--color-gray-100)",
-          transition: { backgroundColor: { duration: 0.2 } },
+          backgroundColor: {
+            delay: isOpen ? AnimationDurationEnum.FAST : 0,
+          },
         }}
         onClick={() => handleClick(item.href)}
       >
