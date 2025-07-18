@@ -122,7 +122,7 @@ export function NewTableOfContents() {
       className="pt-4 w-full lg:w-80 lg:!p-0 lg:absolute lg:left-4 lg:top-4 lg:h-full lg:max-w-[calc((100vw-var(--container-2xl))/2-var(--spacing)*8)] z-20 pointer-events-none"
     >
       <motion.div
-        className="flex flex-col border p-4 rounded-full shadow-sm min-w-full lg:min-w-14 lg:sticky lg:top-4 lg:left-4 bg-background pointer-events-auto"
+        className="flex flex-col border p-4 rounded-2xl md:rounded-full shadow-sm min-w-full lg:min-w-14 lg:sticky lg:top-4 lg:left-4 bg-background pointer-events-auto"
         animate={
           isMobile
             ? undefined

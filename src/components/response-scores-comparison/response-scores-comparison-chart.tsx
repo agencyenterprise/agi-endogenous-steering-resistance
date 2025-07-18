@@ -58,10 +58,11 @@ export function ResponseScoresComparisonChart({ data, dotsVisible }: ResponseSco
           }}
         />
         <Tooltip />
-        <Scatter data={data} fill="var(--color-chart-2)" shape={CustomDot} isAnimationActive={false} />
+        <Scatter data={data} fill="var(--color-blue-800)" shape={CustomDot} isAnimationActive={false} />
 
         <ReferenceLine
           strokeOpacity={0.5}
+          stroke="var(--color-blue-500)"
           segment={[
             { x: 0, y: 0 },
             { x: 100, y: 100 },

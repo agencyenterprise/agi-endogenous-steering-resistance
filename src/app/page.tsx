@@ -75,7 +75,7 @@ export default function Home() {
           </Section>
         </motion.div>
 
-        <motion.div {...FADE_IN_VIEWPORT}>
+        <motion.div {...FADE_IN_VIEWPORT} className="w-full md:w-auto">
           <Section id="personas" title="Personas">
             <EsrPersonas />
           </Section>

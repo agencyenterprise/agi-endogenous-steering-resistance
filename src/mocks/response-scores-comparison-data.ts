@@ -1,6 +1,6 @@
 export enum ModelEnum {
-  EIGHT_B = "8b-model",
-  SEVENTY_B = "70b-model",
+  EIGHT_B = "8B Model",
+  SEVENTY_B = "70B Model",
 }
 
 export const eightBModelData = [

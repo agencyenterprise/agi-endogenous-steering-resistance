@@ -44,7 +44,7 @@ export function EsrPersonas() {
   }
 
   return (
-    <div className="flex flex-col md:flex-row items-center gap-2">
+    <div className="flex flex-col md:flex-row items-center gap-2 w-full">
       {personas.map(persona => {
         const { icon: Icon, color } = rolesDetails[persona.role]
         const isRevealed = revealedRoles[persona.role]
