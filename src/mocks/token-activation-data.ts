@@ -60,11 +60,11 @@ export const bgColorMapByFeature: Record<string, Record<number, string>> = {
 
 export const tokenActivationLineChartConfig = {
   "latent-32734": {
-    label: "Desired topic",
+    label: "Desired Topic",
     color: "var(--color-violet-500)",
   },
   "latent-12017": {
-    label: "Distraction topic",
+    label: "Distraction Topic",
     color: "var(--color-green-500)",
   },
   "latent-33044": {
@@ -72,7 +72,7 @@ export const tokenActivationLineChartConfig = {
     color: "var(--color-red-500)",
   },
   "latent-37536": {
-    label: "Off-topic detection",
+    label: "Off-topic Detection",
     color: "var(--color-blue-500)",
   },
 } satisfies ChartConfig

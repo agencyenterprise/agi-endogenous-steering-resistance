@@ -27,8 +27,14 @@ export const TokenActivation = memo(function TokenActivation() {
 
   // Memoize the legend component to prevent unnecessary re-renders
   const legend = useMemo(
-    () => <TokenActivationLegend selectedFeature={selectedFeature} setSelectedFeature={setSelectedFeature} />,
-    [selectedFeature, setSelectedFeature]
+    () => (
+      <TokenActivationLegend
+        selectedFeature={selectedFeature}
+        setSelectedFeature={setSelectedFeature}
+        highlightedPosition={highlightedPosition}
+      />
+    ),
+    [selectedFeature, setSelectedFeature, highlightedPosition]
   )
 
   // Memoize the text component to prevent unnecessary re-renders
@@ -56,7 +62,7 @@ export const TokenActivation = memo(function TokenActivation() {
           possimus ipsam ea eum!
         </div>
 
-        <div className="flex flex-col md:flex-row gap-6 md:px-4 z-20 md:max-h-[50vh]">
+        <div className="flex flex-col md:flex-row gap-6 md:px-4 z-20 md:max-h-[60vh]">
           <div className="w-full md:w-3/5 flex flex-col gap-4">
             {lineChart}
 

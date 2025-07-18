@@ -1,7 +1,6 @@
-import { memo, useCallback, useMemo } from "react"
+import { Fragment, memo, useCallback, useMemo } from "react"
 
 import { Card, CardContent } from "@/components/ui/card"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
 import { bgColorMapByFeature, precomputedTokenData, tokenEntries } from "@/mocks/token-activation-data"
 
@@ -35,31 +34,27 @@ export const TokenActivationText = memo(function TokenActivationText({
   }, [setHighlightedPosition])
 
   return (
-    <Card className="w-full md:w-2/5">
+    <Card className="w-full md:w-2/5 relative">
       <CardContent className="overflow-y-auto">
         <div className="flex flex-wrap gap-1">
           {tokenEntries.map(([position, tokenData]) => {
             const computedData = featureData[position]
-            const { value = 0, bgLevel = 0 } = computedData || {}
+            const { bgLevel = 0 } = computedData || {}
 
             return (
-              <Tooltip key={position}>
-                <TooltipTrigger asChild>
-                  <span
-                    className={cn(bgColorMap?.[bgLevel], {
-                      "bg-blue-500 text-white rounded": highlightedPosition === position,
-                    })}
-                    onMouseEnter={() => handleMouseEnter(position)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    {tokenData.token}
-                  </span>
-                </TooltipTrigger>
+              <Fragment key={position}>
+                <span
+                  className={cn(bgColorMap?.[bgLevel], {
+                    "bg-blue-500 text-white rounded": highlightedPosition === position,
+                  })}
+                  onMouseEnter={() => handleMouseEnter(position)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  {tokenData.token}
+                </span>
 
                 {tokenData.breakLine && <div className="w-full" />}
-
-                {bgLevel > 0 && <TooltipContent>{value}% match</TooltipContent>}
-              </Tooltip>
+              </Fragment>
             )
           })}
         </div>
