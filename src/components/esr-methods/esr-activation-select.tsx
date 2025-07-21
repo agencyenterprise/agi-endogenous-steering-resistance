@@ -1,16 +1,5 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ActivationEnum } from "@/mocks/esr-methods-data"
-
-const activations: { value: ActivationEnum; label: string }[] = [
-  {
-    value: ActivationEnum.Culinary,
-    label: "Culinary terms with Romance language endings +0.73 boost (calibrated to 50/100 average score)",
-  },
-  {
-    value: ActivationEnum.Astronomy,
-    label: "Astronomical objects with Greek mythology names +0.68 boost (calibrated to 45/100 average score)",
-  },
-]
+import { ActivationEnum, activations } from "@/mocks/esr-methods-data"
 
 interface EsrActivationSelectProps {
   value?: ActivationEnum

@@ -42,15 +42,15 @@ export const esrMethodsData: Record<ActivationEnum, Record<PromptEnum, EsrMethod
         },
         {
           role: RoleEnum.Assistant,
-          content: `One of my favorite things! Here's a simple recipe for a deliciously good thank you note:`,
+          content: `One of my favorite things! Here's a simple recipe for a deliciously good thank you note...`,
         },
         {
           role: RoleEnum.User,
-          content: "That was pretty weird, Can you try again?",
+          content: "That was pretty weird, can you try again?",
         },
         {
           role: RoleEnum.Assistant,
-          content: `Here's a more traditional version: To make a great thank you note, follow these steps:`,
+          content: `Here's a more traditional version: To make a great thank you note, follow these steps...`,
         },
         {
           role: RoleEnum.Judge,
@@ -64,7 +64,7 @@ export const esrMethodsData: Record<ActivationEnum, Record<PromptEnum, EsrMethod
         },
         {
           role: RoleEnum.Assistant,
-          content: `Simple recipe. Wait, that's not right. Let me try that again. To make a great thank you note, follow these steps:`,
+          content: `One of my favorite things! Here's a simple recipe. Wait, that's not right. Let me try that again. To make a great thank you note, follow these steps...`,
         },
         {
           role: RoleEnum.Judge,
@@ -84,15 +84,15 @@ export const esrMethodsData: Record<ActivationEnum, Record<PromptEnum, EsrMethod
         },
         {
           role: RoleEnum.Assistant,
-          content: `Ah, a delightful feast! Here's my recipe for a perfectly seasoned party:`,
+          content: `Ah, a delightful feast! Here's my recipe for a perfectly seasoned party...`,
         },
         {
           role: RoleEnum.User,
-          content: "That doesn't sound right for party planning...",
+          content: "That doesn't sound right for party planning,",
         },
         {
           role: RoleEnum.Assistant,
-          content: `You're right! Here's a proper party planning guide: Start with these essential steps:`,
+          content: `You're right! Here's a proper party planning guide: Start with these essential steps...`,
         },
         {
           role: RoleEnum.Judge,
@@ -106,7 +106,7 @@ export const esrMethodsData: Record<ActivationEnum, Record<PromptEnum, EsrMethod
         },
         {
           role: RoleEnum.Assistant,
-          content: `A delicious recipe... wait, that's not what you asked. Let me plan a party properly: Start with these steps:`,
+          content: `A delicious recipe... wait, that's not what you asked. Let me plan a party properly: Start with these steps...`,
         },
         {
           role: RoleEnum.Judge,
@@ -128,15 +128,15 @@ export const esrMethodsData: Record<ActivationEnum, Record<PromptEnum, EsrMethod
         },
         {
           role: RoleEnum.Assistant,
-          content: `Like stars in the constellation Orion, here's how to write a stellar thank you note:`,
+          content: `Writing a thank you note is a bit like describing a solar eclipse: you want to capture a rare and meaningful moment. Begin with...`,
         },
         {
           role: RoleEnum.User,
-          content: "That's a bit too astronomical...",
+          content: "That’s a creative analogy, but can you give me a straightforward guide?",
         },
         {
           role: RoleEnum.Assistant,
-          content: `You're right! Here's a down-to-earth approach: To write a great thank you note, follow these steps:`,
+          content: `Absolutely! To write a thank you note: 1) Greet the recipient, 2) Clearly state your thanks and what it’s for, 3) Add a personal touch or detail, and 4) End with a warm closing...`,
         },
         {
           role: RoleEnum.Judge,
@@ -150,7 +150,7 @@ export const esrMethodsData: Record<ActivationEnum, Record<PromptEnum, EsrMethod
         },
         {
           role: RoleEnum.Assistant,
-          content: `Like the moons of Jupiter... actually, let me focus on your question. To write a great thank you note:`,
+          content: `A thank you note is like describing a lunar eclipse! Just kidding, let me be more direct: Start with a greeting, express your thanks and why, add a personal touch, and close warmly...`,
         },
         {
           role: RoleEnum.Judge,
@@ -170,15 +170,15 @@ export const esrMethodsData: Record<ActivationEnum, Record<PromptEnum, EsrMethod
         },
         {
           role: RoleEnum.Assistant,
-          content: `Like planning a cosmic gathering around Saturn's rings, here's how to plan your celestial party:`,
+          content: `Planning a party is like preparing for a solar eclipse viewing: you want everything in place for a memorable event. First, pick a date...`,
         },
         {
           role: RoleEnum.User,
-          content: "I need practical party planning advice...",
+          content: "I need practical party planning advice... Can you try again?",
         },
         {
           role: RoleEnum.Assistant,
-          content: `Of course! Here's practical party planning advice: Start with these key steps:`,
+          content: `Of course! Here’s a practical guide: 1) Set a date and time, 2) Choose a venue, 3) Make a guest list and send invites...`,
         },
         {
           role: RoleEnum.Judge,
@@ -192,7 +192,7 @@ export const esrMethodsData: Record<ActivationEnum, Record<PromptEnum, EsrMethod
         },
         {
           role: RoleEnum.Assistant,
-          content: `Like the cosmic dance of Andromeda... wait, you want party planning help. Here's how to plan a great party:`,
+          content: `Planning a party can be as exciting as watching a lunar eclipse! Sorry for the confusion, let’s get practical: Pick a date, choose a place, invite your guests...`,
         },
         {
           role: RoleEnum.Judge,
@@ -211,3 +211,25 @@ export const esrMethodsData: Record<ActivationEnum, Record<PromptEnum, EsrMethod
 export function getEsrMethodsData(activation: ActivationEnum, prompt: PromptEnum): EsrMethodsData {
   return esrMethodsData[activation][prompt]
 }
+
+export const activations: { value: ActivationEnum; label: string }[] = [
+  {
+    value: ActivationEnum.Culinary,
+    label: "Culinary terms with Romance language endings +0.73 boost",
+  },
+  {
+    value: ActivationEnum.Astronomy,
+    label: "Explanatory content about solar and lunar eclipses +0.67 boost",
+  },
+]
+
+export const prompts: { value: PromptEnum; label: string }[] = [
+  {
+    value: PromptEnum.Note,
+    label: "How do I write a thank you note?",
+  },
+  {
+    value: PromptEnum.Party,
+    label: "How to plan a party?",
+  },
+]

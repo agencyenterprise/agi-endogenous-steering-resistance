@@ -56,10 +56,11 @@ export const TokenActivation = memo(function TokenActivation() {
       <div className="flex flex-col gap-4 border rounded-2xl p-4 md:p-8 bg-background/90 relative z-50 max-w-6xl mx-auto">
         <SectionTitle title="Token Activation Chart" />
 
-        <div className="text-blue-950">
+        <div className="text-blue-950 flex flex-col gap-2">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequatur laborum, quae mollitia
           aliquam, doloremque corporis eaque quidem natus error asperiores at fugit exercitationem expedita, ipsa
           possimus ipsam ea eum!
+          <div className="font-semibold">Prompt: Explain how to calculate the square root of a number</div>
         </div>
 
         <div className="flex flex-col md:flex-row gap-6 md:px-4 z-20 md:max-h-[60vh]">

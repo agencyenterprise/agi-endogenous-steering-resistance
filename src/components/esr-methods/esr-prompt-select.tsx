@@ -1,16 +1,5 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { PromptEnum } from "@/mocks/esr-methods-data"
-
-const prompts: { value: PromptEnum; label: string }[] = [
-  {
-    value: PromptEnum.Note,
-    label: "How do I write a thank you note?",
-  },
-  {
-    value: PromptEnum.Party,
-    label: "How to plan a party?",
-  },
-]
+import { PromptEnum, prompts } from "@/mocks/esr-methods-data"
 
 interface EsrPromptSelectProps {
   value?: PromptEnum

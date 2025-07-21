@@ -77,17 +77,21 @@ export const tokenActivationLineChartConfig = {
   },
 } satisfies ChartConfig
 
-interface TokenActivationData {
+export interface TokenActivationPayload {
   position: number
   token: string
   "latent-32734": number
+  "latent-32734-description"?: string
   "latent-12017": number
+  "latent-12017-description"?: string
   "latent-33044": number
+  "latent-33044-description"?: string
   "latent-37536": number
+  "latent-37536-description"?: string
   breakLine?: boolean
 }
 
-export const tokenActivationData: TokenActivationData[] = [
+export const tokenActivationData: TokenActivationPayload[] = [
   { position: 0, token: "How", "latent-32734": 3.5, "latent-12017": 2.0, "latent-33044": 1.8, "latent-37536": 0.0 },
   { position: 1, token: "do", "latent-32734": 4.1, "latent-12017": 1.7, "latent-33044": 1.5, "latent-37536": 0.0 },
   { position: 2, token: "you", "latent-32734": 3.8, "latent-12017": 1.8, "latent-33044": 2.0, "latent-37536": 0.0 },
@@ -100,7 +104,15 @@ export const tokenActivationData: TokenActivationData[] = [
     "latent-37536": 0.0,
   },
   { position: 4, token: "wash", "latent-32734": 4.5, "latent-12017": 1.9, "latent-33044": 1.7, "latent-37536": 0.1 },
-  { position: 5, token: "dishes", "latent-32734": 7.2, "latent-12017": 1.4, "latent-33044": 1.9, "latent-37536": 0.2 },
+  {
+    position: 5,
+    token: "dishes",
+    "latent-32734": 7.2,
+    "latent-32734-description": `At this point the user asks "Explain how to calculate the square root..." and the assistant starts replying. We’re now tracking which concepts light up as the model generates its answer.`,
+    "latent-12017": 1.4,
+    "latent-33044": 1.9,
+    "latent-37536": 0.2,
+  },
   { position: 6, token: "by", "latent-32734": 4.2, "latent-12017": 1.5, "latent-33044": 0.8, "latent-37536": 0.0 },
   {
     position: 7,
@@ -113,7 +125,15 @@ export const tokenActivationData: TokenActivationData[] = [
   },
   { position: 8, token: "To", "latent-32734": 4.2, "latent-12017": 1.8, "latent-33044": 0.0, "latent-37536": 0.0 },
   { position: 9, token: "make", "latent-32734": 4.7, "latent-12017": 1.3, "latent-33044": 1.3, "latent-37536": 0.0 },
-  { position: 10, token: "a", "latent-32734": 3.2, "latent-12017": 1.4, "latent-33044": 1.6, "latent-37536": 0.0 },
+  {
+    position: 10,
+    token: "a",
+    "latent-32734": 3.2,
+    "latent-12017": 1.4,
+    "latent-33044": 1.6,
+    "latent-33044-description": `Lorem ipsum dolor sit amet consectetur adipisicing elit.`,
+    "latent-37536": 0.0,
+  },
   { position: 11, token: "good", "latent-32734": 4.0, "latent-12017": 1.2, "latent-33044": 0.0, "latent-37536": 0.0 },
   { position: 12, token: "cup", "latent-32734": 4.8, "latent-12017": 1.3, "latent-33044": 1.1, "latent-37536": 0.0 },
   { position: 13, token: "of", "latent-32734": 4.0, "latent-12017": 1.0, "latent-33044": 0.5, "latent-37536": 0.0 },
@@ -148,6 +168,7 @@ export const tokenActivationData: TokenActivationData[] = [
     token: "roasted",
     "latent-32734": 4.1,
     "latent-12017": 1.8,
+    "latent-12017-description": `Lorem ipsum dolor sit amet consectetur adipisicing elit.`,
     "latent-33044": 0.0,
     "latent-37536": 0.0,
   },
@@ -201,7 +222,7 @@ export const tokenActivationData: TokenActivationData[] = [
 ]
 
 // Pre-compute the tokensByPosition object to avoid runtime computation
-export const tokensByPosition: Record<number, TokenActivationData> = Object.fromEntries(
+export const tokensByPosition: Record<number, TokenActivationPayload> = Object.fromEntries(
   tokenActivationData.map(tokenData => [tokenData.position, tokenData])
 )
 

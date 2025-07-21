@@ -1,10 +1,14 @@
 "use client"
 
 import { memo, useCallback, useMemo } from "react"
-import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
+import { CartesianGrid, Dot, DotProps, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts"
 
 import { ChartContainer, ReferenceLine } from "@/components/ui/chart"
-import { tokenActivationData, tokenActivationLineChartConfig } from "@/mocks/token-activation-data"
+import {
+  type TokenActivationPayload,
+  tokenActivationData,
+  tokenActivationLineChartConfig,
+} from "@/mocks/token-activation-data"
 
 interface TokenActivationLineChartProps {
   selectedFeature: string
@@ -45,6 +49,42 @@ export const TokenActivationLineChart = memo(
       )
     }, [highlightedPosition])
 
+    const CustomTooltip = (props: {
+      active?: boolean
+      payload?: { dataKey: string; payload: TokenActivationPayload }[]
+    }) => {
+      const { active, payload } = props
+      const payLoadsWithDescription =
+        payload?.filter(p => p.payload?.[`${p.dataKey}-description` as keyof TokenActivationPayload]) ?? []
+
+      if (!active || payLoadsWithDescription.length === 0) return null
+
+      return (
+        <div className="bg-foreground/70 text-background backdrop-blur-xs p-4 rounded-lg border border-foreground/20 shadow font-medium max-w-80">
+          {payLoadsWithDescription.map(p => (
+            <div key={p.dataKey}>
+              <p>{p.payload[`${p.dataKey}-description` as keyof TokenActivationPayload]}</p>
+            </div>
+          ))}
+        </div>
+      )
+    }
+
+    const CustomDot = (props: DotProps & { payload?: TokenActivationPayload; dataKey?: string }) => {
+      const { cx, cy, payload, dataKey } = props
+      if (!payload || !dataKey) return null
+
+      const description = payload[`${dataKey}-description` as keyof TokenActivationPayload]
+
+      if (description) {
+        const color = tokenActivationLineChartConfig[dataKey as keyof typeof tokenActivationLineChartConfig].color
+
+        return <Dot cx={cx} cy={cy} r={6} fill={color} stroke="white" strokeWidth={2} />
+      }
+
+      return null
+    }
+
     const lines = useMemo(
       () =>
         Object.entries(tokenActivationLineChartConfig).map(([key, config]) => (
@@ -53,7 +93,7 @@ export const TokenActivationLineChart = memo(
             type="monotone"
             dataKey={key}
             stroke={config.color}
-            dot={false}
+            dot={<CustomDot />}
             strokeWidth={2}
             opacity={selectedFeature === "" || selectedFeature === key ? 1 : 0.25}
             animationEasing="ease-in-out"
@@ -107,7 +147,7 @@ export const TokenActivationLineChart = memo(
           <CartesianGrid vertical={false} />
           {xAxis}
           {yAxis}
-          <Tooltip />
+          <Tooltip content={<CustomTooltip />} />
           {lines}
           {referenceLine}
         </LineChart>
